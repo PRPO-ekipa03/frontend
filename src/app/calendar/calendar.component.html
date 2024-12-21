@@ -1,0 +1,31 @@
+<div class="calendar-container">
+  <div class="calendar">
+    <div class="calendar-header">
+      <button class="nav-arrow" (click)="prevMonth()">&lt;</button>
+      <h4>{{ currentMonth }} {{ currentYear }}</h4>
+      <button class="nav-arrow" (click)="nextMonth()">&gt;</button>
+    </div>
+
+    <!-- Weekday Abbreviations -->
+    <div class="calendar-weekdays">
+      <span>Mon</span>
+      <span>Tue</span>
+      <span>Wed</span>
+      <span>Thu</span>
+      <span>Fri</span>
+      <span>Sat</span>
+      <span>Sun</span>
+    </div>
+
+    <div class="calendar-body">
+      <button 
+        *ngFor="let day of days" 
+        class="calendar-date" 
+        [class.empty]="day === ''" 
+        (click)="isNumber(day) ? selectDate(day) : null"
+      >
+        {{ day }}
+    </button>
+    </div>
+  </div>
+</div>

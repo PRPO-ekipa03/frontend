@@ -1,0 +1,242 @@
+.navbar-brand {
+	font-family: 'Dela Gothic One', sans-serif;
+	font-size: 1.5rem; /* Adjust size as needed */
+	transition: color 0.5s ease;
+}
+
+.navbar {
+	background-color: transparent; /* Transparent initially */
+	transition: background-color 0s ease, box-shadow 0s ease; /* Smooth transition */
+}
+
+/* Center the navbar content within a smaller container */
+.navbar .container {
+	max-width: 1500px; /* Adjust as needed */
+	margin: auto; /* Center the container */
+}
+
+.hero-section {
+	position: relative; /* Make the hero-section a positioning context */
+    background-color: #004349; /* Background color */
+    color: #fff; /* Text color */
+	padding-top: 160px;
+	z-index: 1; /* Ensure the hero content stays below the search bar */
+}
+
+.display-5 {
+	font-family: 'Lalezar', cursive;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    position: absolute;
+    bottom: -10%; /* Position into results section */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    padding: 15px 20px;
+    border-radius: 50px;
+    width: 71%;
+}
+
+/* Input Field Container */
+.search-input {
+    background-color: #eee4f0; /* Match background for input field */
+	padding: 5px;
+    overflow: visible; /* Hide inner edges */
+    position: relative; /* Position context for icons */
+	border-radius: 90px;
+	font-family: sans-serif;
+}
+
+/* First Input: Border Radius */
+.search-input:nth-child(1) {
+    border-radius: 90px 0px 0px 90px ; /* Top-left and bottom-left: 90px, right: 10px */
+}
+
+/* Second Input: Uniform Border Radius */
+.search-input:nth-child(2) {
+    border-radius: 0; /* All corners 10px */
+}
+
+/* Third Input: Border Radius */
+.search-input:nth-child(3) {
+    border-radius: 0px 90px 90px 0px; /* Left: 10px, Top-right and Bottom-right: 90px */
+}
+
+.search-input .form-control:focus {
+    box-shadow: none; /* Remove any box-shadow */
+}
+
+
+/* Input Field */
+.search-input .form-control {
+    background-color: transparent; /* Same background as container */
+    border: none; /* Remove borders */
+    font-size: 1rem;
+    color: #333;
+    padding-left: 2.5rem; /* Space for the icon */
+    height: 45px; /* Consistent height */
+}
+
+/* Input Group Text (Icons) */
+.search-input .input-group-text {
+    background-color: transparent; /* Match input background */
+    border: none; /* Remove borders */
+    color: #6c757d; /* Icon color */
+    position: absolute;
+    left: 1rem; /* Align the icon to the left */
+    z-index: 10; /* Ensure it is above input */
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 45px; /* Vertically center icon */
+    pointer-events: none; /* Make the icon unclickable */
+}
+
+/* Button styled like an input */
+.date-button {
+    background-color: #eee4f0; /* Match input field background */
+    border: none; /* Remove border */
+    font-size: 1rem; /* Text size */
+    color: #333; /* Text color */
+    padding-left: 2.5rem; /* Space for the icon */
+    height: 45px; /* Match input height */
+    width: 100%; /* Full width */
+    text-align: left; /* Align text to the left */
+    border-radius: 10px; /* Match the border-radius of inputs */
+    cursor: pointer; /* Show pointer cursor */
+}
+
+/* Button hover effect */
+.date-button:hover {
+    background-color: #ddd; /* Slightly darker background on hover */
+}
+
+.dropdown-menu {
+	max-height: 200px; /* Limit height for overflow */
+	overflow: auto; /* Enable scrolling for long lists */
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1050;
+	display: block;
+	width: 100%;
+}
+
+.dropdown-item {
+	cursor: pointer;
+}
+
+/* Make sure the container for input and ghost text align text properly */
+.ghost-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 2.5rem; /* space for the icon */
+	transform: translateY(-50%);
+	pointer-events: none;
+	color: #ccc;
+	font-size: 1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: calc(100% - 2.5rem);
+}
+
+/* The ghost text matches the userInput so it aligns exactly with typed text */
+.ghost-text {
+	display: inline-block;
+	width: 100%;
+}
+
+/* Only the suffix (the part user hasn't typed yet) should appear lighter */
+.ghost-suffix {
+	color: #ccc;
+}
+
+/* Ensure the actual input text sits on top */
+input.form-control.bg-transparent {
+	position: relative;
+	background: transparent;
+	z-index: 1;
+	color: #333;
+}
+
+
+/* Input group styling for icon */
+.input-group-text {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Make the icon unclickable */
+    color: #6c757d; /* Icon color */
+}
+
+/* Adjust Search Button */
+.btn i {
+    color: #6c757d; /* Icon color */
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.results-section {
+	padding-top: 100px;
+}
+
+/* Venue Card */
+.venue-card {
+	box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Rating Badge */
+.rating-badge {
+	background-color: #9DDE8B;
+	color: #000;
+	font-weight: bold;
+	border-radius: 50%;
+	font-size: 0.9rem;
+}
+
+/* Show Pricing Button */
+.show-pricing-btn {
+	background-color: #9DDE8B;
+	color: #000;
+	border: none;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+	font-weight: bold;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.show-pricing-btn:hover {
+	background-color: #ffffff;
+	color: #004349;
+	transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+	.venue-card img {
+		width: 100px;
+		height: 80px;
+	}
+
+	.search-bar {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.search-input {
+		flex: 1;
+	}
+
+	.show-pricing-btn {
+		margin-top: 1rem;
+	}
+}
+
