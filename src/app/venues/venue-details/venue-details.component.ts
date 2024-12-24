@@ -28,7 +28,8 @@ export class VenueDetailsComponent implements OnInit {
   sampleImages = [
     'assets/images/event1.jpeg',
     'assets/images/event1.jpeg',
-    'assets/images/event1.jpeg'
+    'assets/images/event1.jpeg',
+
   ];
 
   // Demo reviews (could come from your venue object or another API)

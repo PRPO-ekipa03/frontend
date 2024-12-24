@@ -1,4 +1,4 @@
-<section class="venue-details-section">
+<section class="venue-details-section p-4">
   <div class="container p-3 p-md-4">
 
     <!-- Card-like container for the detail view -->
@@ -9,44 +9,89 @@
         <h2 class="venue-title fw-bold">
           {{ venue.name || 'Name of the venue' }}
         </h2>
-        <!-- Rating badge in the top-right corner -->
-        <div
-          class="rating-badge-container d-flex align-items-center justify-content-between p-2 rounded text-white"
-        >
-          <div>
-            <p class="rating-text m-0 fw-bold">
-              {{ getRatingText(venue.rating || 9.6) }}
-            </p>
-            <p class="rating-reviews m-0 small" style="color: white;">
-              43 reviews
-            </p>
-          </div>
-          <div class="rating-score d-flex align-items-center justify-content-center">
-            <span>{{ venue.rating || 9.6 }}</span>
-          </div>
-        </div>
+       
       </div>
 
       <!-- Images + Map row -->
       <div class="row mb-4">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
-          <!-- Image gallery -->
-          <div class="gallery-row d-flex flex-wrap gap-3">
-            <!-- For simplicity, show up to 3 images (or more if you wish) -->
-            <div class="gallery-item" *ngFor="let img of sampleImages; let i = index">
-              <img
-                [src]="img"
-                [alt]="'Venue ' + i"
-                class="img-fluid rounded shadow-sm"
-              />
+          <!-- Dynamic Image Gallery -->
+          <div class="gallery-container">
+            <!-- One Image -->
+            <div *ngIf="sampleImages.length === 1" class="single-image">
+              <img [src]="sampleImages[0]" [alt]="'Venue 0'" class="img-fluid rounded shadow-sm" />
+            </div>
+
+            <!-- Two Images -->
+            <div *ngIf="sampleImages.length === 2" class="two-images">
+              <div *ngFor="let img of sampleImages" class="image-item">
+                <img [src]="img" [alt]="'Venue ' + img" class="img-fluid rounded shadow-sm" />
+              </div>
+            </div>
+
+            <!-- Three Images -->
+            <div *ngIf="sampleImages.length === 3" class="three-images d-flex">
+              <!-- Small images on the left -->
+              <div class="small-images d-flex flex-column me-0">
+                <div *ngFor="let img of sampleImages.slice(1)" class="image-item mb-1">
+                  <img [src]="img" [alt]="'Venue ' + img" class="img-fluid rounded shadow-sm" />
+                </div>
+              </div>
+
+              <!-- Big image on the right -->
+              <div class="big-image">
+                <img [src]="sampleImages[0]" [alt]="'Venue 0'" class="img-fluid rounded shadow-sm" />
+              </div>
+            </div>
+
+            <!-- More than 3 Images -->
+            <div *ngIf="sampleImages.length > 3">
+              <!-- Reuse the three-images layout for the first 3 images -->
+              <div class="three-images d-flex">
+                <!-- Two small (images[1], images[2]) -->
+                <div class="small-images d-flex flex-column">
+                  <div class="image-item" *ngFor="let img of sampleImages.slice(1, 3); let i = index">
+                    <img [src]="img" [alt]="'Venue ' + (i+1)" />
+                  </div>
+                </div>
+                <!-- One big (images[0]) -->
+                <div class="big-image">
+                  <img [src]="sampleImages[0]" alt="Venue 0" />
+                </div>
+              </div>
+
+              <!-- Additional images below (images[3..end]) -->
+              <div class="additional-images mt-3">
+                <div class="image-item" *ngFor="let img of sampleImages.slice(3); let i = index">
+                  <img [src]="img" [alt]="'Venue ' + (i+3)" class="thumb-img" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Map and Rating Badge -->
         <div class="col-12 col-md-4 d-flex flex-column justify-content-between">
-          <!-- Map Placeholder (In real scenario, you'd integrate an external map API) -->
+          <!-- Rating Badge -->
+          <div class="rating-badge-container d-flex align-items-center justify-content-between p-2 rounded text-white mb-3">
+            <div>
+              <p class="rating-text m-0 fw-bold">
+                {{ getRatingText(venue.rating || 9.6) }}
+              </p>
+              <p class="rating-reviews m-0 small" style="color: white;">
+                43 reviews
+              </p>
+            </div>
+            <div class="rating-score d-flex align-items-center justify-content-center">
+              <span>{{ venue.rating || 9.6 }}</span>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
           <div id="map" style="height: 300px; width: 100%;" class="mb-4"></div>
         </div>
       </div>
+
 
       <!-- More detailed description -->
       <h4 class="fw-semibold mb-2">More detailed description</h4>

@@ -18,4 +18,13 @@ export class VenuesListComponent {
   onShowPricing(venueId: number) {
     this.navigateToDetail.emit(venueId);
   }
+
+  getTruncatedDescription(description: string, limit: number): string {
+    const words = description.split(' ');
+    if (words.length > limit) {
+      return words.slice(0, limit).join(' ') + '...';
+    }
+    return description;
+  }
+
 }

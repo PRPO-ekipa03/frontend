@@ -4,6 +4,7 @@
 .venue-details-section {
     background-color: #ECE2D0; /* match your overall background */
     padding: 2rem 0; /* some vertical spacing */
+    padding-top: 50px !important
   }
   
   .details-card {
@@ -123,6 +124,93 @@
     font-weight: bold;
     border-radius: 10px;
   }
+
+  /* One image - large full-width */
+.single-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Two images - side by side */
+  .two-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .two-images .image-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Three images - 1 large and 2 small */
+  .three-images {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  
+  .three-images .big-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    grid-row: span 2;
+    min-height: 390px;
+
+  }
+  
+  .three-images .small-images {
+    display: grid;
+    max-width: 270px; /* Maximum width for smaller images */
+    max-height: 195px; /* Maximum height for smaller images */
+    object-fit: cover; /* Ensures the image aspect ratio is preserved */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .three-images .small-images .image-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* A container for leftover images (beyond the first 3) */
+.additional-images {
+    display: flex;            /* or grid, if you prefer a grid layout */
+    flex-wrap: wrap;          /* wrap to next line if many images */
+    gap: 16px;                /* spacing between extra images */
+  }
+  
+  /* Example of smaller thumbnail styling */
+  .additional-images .thumb-img {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+  
+  /* More than 3 images - grid layout */
+  .grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .grid-gallery .more-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .grid-gallery .image-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
   
   /***********************************************
      Responsive Adjustments

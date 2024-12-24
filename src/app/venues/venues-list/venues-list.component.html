@@ -18,9 +18,9 @@
                   <span class="me-3">{{ venue.location }}</span>
                   <a href="#" class="text-decoration-underline" style="color:#6c757d;">Show on map</a>
                 </p>
-                <p class="description mb-0">
-                  {{ venue.description }}
-                </p>
+                <p class="venue-description mb-4">
+                    {{ getTruncatedDescription(venue.description || 'Default description text.', 100) }}
+                  </p>
               </div>
               <!-- Button container -->
               <div class="position-absolute show-pricing-container">
