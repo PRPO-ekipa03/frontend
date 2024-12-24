@@ -186,6 +186,9 @@ input.form-control.bg-transparent {
 
 .results-section {
 	padding-top: 100px;
+	background-color: #ECE2D0;
+	min-height: calc(100vh - 160px - 96px);
+	padding-bottom: 30px;
 }
 
 /* Venue Card */
@@ -218,6 +221,7 @@ input.form-control.bg-transparent {
 	color: #004349;
 	transform: scale(1.05);
 }
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {

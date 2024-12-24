@@ -1,0 +1,83 @@
+<div class="venue-detail-card p-4 rounded-3" style="background: #fff;">
+    <!-- Title and rating row -->
+    <div class="d-flex align-items-start justify-content-between mb-3">
+      <div>
+        <h2 class="fw-bold">{{ venue.name }}</h2>
+        <p class="text-muted mb-0">{{ venue.location }}</p>
+      </div>
+      <div
+        class="rating-badge d-flex align-items-center justify-content-center"
+        style="width: 50px; height: 50px;"
+      >
+        <span>{{ venue.rating }}</span>
+      </div>
+    </div>
+  
+    <!-- Image gallery row (example: 3 images) -->
+    <div class="row mb-3">
+      <div class="col-4">
+        <img
+          [src]="venue.imageUrl"
+          alt="Venue primary"
+          style="width: 100%; height: 120px; object-fit: cover;"
+          class="rounded"
+        />
+      </div>
+      <div class="col-4">
+        <img
+          src="assets/images/venue2.jpg"
+          alt="Venue second"
+          style="width: 100%; height: 120px; object-fit: cover;"
+          class="rounded"
+        />
+      </div>
+      <div class="col-4">
+        <img
+          src="assets/images/venue3.jpg"
+          alt="Venue third"
+          style="width: 100%; height: 120px; object-fit: cover;"
+          class="rounded"
+        />
+      </div>
+    </div>
+  
+    <!-- Detailed description -->
+    <h4 class="mb-2">More detailed description</h4>
+    <p>
+      <!-- Example text, or you can just do `{{ venue.description }}` -->
+      {{ venue.description }}
+    </p>
+  
+    <!-- Maybe a map, or location details -->
+    <div class="d-flex align-items-start mt-3">
+      <div class="flex-grow-1">
+        <img src="assets/images/map-placeholder.jpg" style="width: 100%; max-width: 250px;" alt="Map" />
+      </div>
+    </div>
+  
+    <!-- Reservation button or pricing details -->
+    <div class="mt-4">
+      <button class="btn btn-success">Reserve</button>
+    </div>
+  
+    <!-- Example "Guest reviews" section -->
+    <div class="mt-5">
+      <h5>Guest reviews</h5>
+      <!-- Just a sample. Typically, you'd loop over an array of reviews. -->
+      <div class="review-card p-3 my-2 rounded" style="background-color: #f8f8f8;">
+        <p class="fw-bold">Name Surname</p>
+        <p class="mb-1" style="font-size: 0.9rem;">
+          This is an example review...
+        </p>
+        <div class="small text-muted">Rating: 8.7</div>
+      </div>
+      <div class="review-card p-3 my-2 rounded" style="background-color: #f8f8f8;">
+        <p class="fw-bold">Name Surname</p>
+        <p class="mb-1" style="font-size: 0.9rem;">
+          Another example review...
+        </p>
+        <div class="small text-muted">Rating: 6.9</div>
+      </div>
+    </div>
+  </div>
+  
