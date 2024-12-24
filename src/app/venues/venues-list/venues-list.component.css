@@ -1,0 +1,78 @@
+.results-section {
+    padding-top: 100px;
+    background-color: #ECE2D0;
+    min-height: calc(100vh - 160px - 96px);
+    padding-bottom: 30px;
+  }
+  
+  /* Venue Card */
+  .venue-card {
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 8px; /* example */
+    position: relative; /* So child "position-absolute" items align properly */
+  }
+  
+  /* Venue Image */
+  .venue-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Container that holds the "Show pricing" button in bottom-right */
+  .show-pricing-container {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  /* Rating Badge */
+  .rating-badge {
+    width: 40px;
+    height: 40px;
+    top: 1rem;
+    right: 1rem;
+    background-color: #9DDE8B;
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    margin: 0; 
+  }
+  
+  /* Show Pricing Button */
+  .show-pricing-btn {
+    background-color: #9DDE8B;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .show-pricing-btn:hover {
+    background-color: #ffffff;
+    color: #004349;
+    transform: scale(1.05);
+  }
+  
+  /* Adjust text size, line height, color etc. for the description */
+  .description {
+    color: #333;
+    line-height: 1.4;
+    font-size: 0.95rem;
+  }
+  
+  /* Responsive Adjustments for the results area */
+  @media (max-width: 768px) {
+    .venue-image {
+      width: 100px;
+      height: 80px;
+    }
+  
+    .show-pricing-btn {
+      margin-top: 1rem;
+    }
+  }
+  

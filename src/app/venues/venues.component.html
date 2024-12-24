@@ -1,135 +1,97 @@
 <!-- Top Navigation -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent py-3">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top py-3">
 	<div class="container d-flex justify-content-between align-items-center">
-			<!-- Navbar Brand -->
-			<a class="navbar-brand fs-4" href="#">Event4You</a>
-			<!-- Navbar Toggler for Mobile View -->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-			</button>
+	  <!-- Navbar Brand -->
+	  <a class="navbar-brand fs-4" href="#">Event4You</a>
+	  <!-- Navbar Toggler for Mobile View -->
+	  <button
+		class="navbar-toggler"
+		type="button"
+		data-bs-toggle="collapse"
+		data-bs-target="#mainNav"
+		aria-controls="mainNav"
+		aria-expanded="false"
+		aria-label="Toggle navigation"
+	  >
+		<span class="navbar-toggler-icon"></span>
+	  </button>
 	</div>
-</nav>
-
-<!-- Hero / Search Section -->
-<section class="hero-section d-flex flex-column justify-content-center" style="background-color: #004349; color: #fff;">
+  </nav>
+  
+  <!-- Hero / Search Section -->
+  <section class="hero-section d-flex flex-column justify-content-center">
 	<div class="container py-5">
-		<h1 class="display-5 ">Find your venue now</h1>
-		<p class="lead mb-5">Search for venues that best fit your event</p>
-		<div class="search-bar p-2 rounded-pill d-flex justify-content-between align-items-center">
-			<!-- Location Input -->
-			<div class="input-group search-input me-3 position-relative" style="position: relative;">
-				<span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-				<div class="position-relative flex-grow-1">
-					<!-- Ghost suggestion wrapper -->
-					<div class="ghost-wrapper">
-						<span class="ghost-text">
-							{{ userInput }}<span class="ghost-suffix" *ngIf="bestSuggestionSuffix">{{ bestSuggestionSuffix }}</span>
-						</span>
-					</div>
-					<!-- Actual Input Field -->
-					<input
-						type="text"
-						class="form-control bg-transparent"
-						placeholder="Location"
-						(input)="onLocationInput($event)"
-						(keydown.enter)="acceptSuggestion()"
-						[(ngModel)]="userInput"
-					>
-				</div>
-			</div>
-
-			<!-- Date Input -->
-			<div class="input-group search-input me-3 position-relative">
-				<span class="input-group-text">
-					<i class="bi bi-calendar-event-fill"></i>
+	  <h1 class="display-5">Find your venue now</h1>
+	  <p class="lead mb-5">Search for venues that best fit your event</p>
+	  <div class="search-bar p-2 rounded-pill d-flex justify-content-between align-items-center">
+		<!-- Location Input -->
+		<div class="input-group search-input me-3 position-relative">
+		  <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+		  <div class="position-relative flex-grow-1">
+			<!-- Ghost suggestion wrapper -->
+			<div class="ghost-wrapper">
+			  <span class="ghost-text">
+				{{ userInput }}
+				<span class="ghost-suffix" *ngIf="bestSuggestionSuffix">
+				  {{ bestSuggestionSuffix }}
 				</span>
-				<button #dateButton (click)="openModal()" id="date-button" class="form-control date-button" type="button">
-					{{ selectedDate || 'Select Date' }}
-				</button>
-				<input type="date" id="date-picker" class="d-none">
+			  </span>
 			</div>
-
-			<!-- Type of event / amount of people Input -->
-			<div class="input-group search-input position-relative">
-				<span class="input-group-text"><i class="bi bi-people-fill"></i></span>
-				<input type="text" class="form-control" placeholder="Type of event / amount of people">
-			</div>
-
-			<!-- Search Button (UPDATED) -->
-			<button class="btn p-0 ms-3" type="button" (click)="searchVenues()">
-				<i class="bi bi-search fs-4 text-secondary"></i>
-			</button>
-		</div>
-	</div>
-</section>
-
-<!-- Results Section -->
-
-<section class="results-section" style="background-color: #ECE2D0;">
-	<div class="container">
-	  
-	  <!-- Only render results if hasSearched is true -->
-	  <ng-container *ngIf="hasSearched; else notSearchedYet">
-		
-		<!-- If we have venues, display them in a loop -->
-		<ng-container *ngIf="venues && venues.length; else noVenuesFound">
-		  <div
-			class="venue-card mb-4 p-4 rounded-3 position-relative d-flex align-items-start"
-			style="background: #fff;"
-			*ngFor="let venue of venues"
-		  >
-			<img
-			  [src]="venue.imageUrl"
-			  alt="Venue"
-			  class="rounded-3 me-4"
-			  style="width: 250px; height: 250px; object-fit: cover;"
+			<!-- Actual Input Field -->
+			<input
+			  type="text"
+			  class="form-control bg-transparent"
+			  placeholder="Location"
+			  (input)="onLocationInput($event)"
+			  (keydown.enter)="acceptSuggestion()"
+			  [(ngModel)]="userInput"
 			/>
-			<div class="flex-grow-1 d-flex flex-column justify-content-between">
-			  <div>
-				<h5 class="fw-bold mb-1">{{ venue.name }}</h5>
-				<p class="mb-1">
-				  <span class="me-3">{{ venue.location }}</span>
-				  <a href="#" class="text-decoration-underline" style="color:#6c757d;">Show on map</a>
-				</p>
-				<p class="description mb-0" style="color:#333; line-height:1.4; font-size:0.95rem;">
-				  {{ venue.description }}
-				</p>
-			  </div>
-			   <!-- Button container -->
-				<div
-				class="position-absolute"
-				style="bottom: 1rem; right: 1rem;"
-				>
-				<a href="#" class="btn show-pricing-btn">Show pricing</a>
-				</div>
-			</div>
-			<div
-			  class="rating-badge d-flex align-items-center justify-content-center position-absolute top-0 end-0 mt-3 me-3"
-			  style="width: 40px; height: 40px;"
-			>
-			  <span>{{ venue.rating }}</span>
-			</div>
 		  </div>
-		</ng-container>
+		</div>
   
-		<!-- Template for empty venues scenario -->
-		<ng-template #noVenuesFound>
-		  <p>No venues found.</p>
-		</ng-template>
+		<!-- Date Input -->
+		<div class="input-group search-input me-3 position-relative">
+		  <span class="input-group-text">
+			<i class="bi bi-calendar-event-fill"></i>
+		  </span>
+		  <button
+			#dateButton
+			(click)="openModal()"
+			id="date-button"
+			class="form-control date-button"
+			type="button"
+		  >
+			{{ selectedDate || 'Select Date' }}
+		  </button>
+		  <input type="date" id="date-picker" class="d-none" />
+		</div>
   
-	  </ng-container>
+		<!-- Type of event / amount of people Input -->
+		<div class="input-group search-input position-relative">
+		  <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
+		  <input type="text" class="form-control" placeholder="Type of event / amount of people" />
+		</div>
   
-	  <!-- Rendered if user has NOT searched yet -->
-	  <ng-template #notSearchedYet>
-		<!-- This is optional. You can leave it blank or add a placeholder message. -->
-		<p>Use the search bar above to find venues.</p>
-	  </ng-template>
-  
+		<!-- Search Button -->
+		<button class="btn p-0 ms-3" type="button" (click)="searchVenues()">
+		  <i class="bi bi-search fs-4 text-secondary"></i>
+		</button>
+	  </div>
 	</div>
   </section>
+  
+  <!-- Child Component for Results -->
+  <app-venues-list
+	*ngIf="!showingDetail"
+	[venues]="venues"
+	[hasSearched]="hasSearched"
+	(navigateToDetail)="onNavigateToDetail($event)"
+  > </app-venues-list>
 
-<ng-template cdkPortal>
+  <router-outlet *ngIf="showingDetail"></router-outlet>
+  
+  <!-- Portal for the calendar overlay -->
+  <ng-template cdkPortal>
 	<app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
-</ng-template>
-
-<app-venue-details></app-venue-details>
+  </ng-template>
+  

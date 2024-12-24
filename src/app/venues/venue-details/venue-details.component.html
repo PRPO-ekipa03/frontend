@@ -1,83 +1,86 @@
-<div class="venue-detail-card p-4 rounded-3" style="background: #fff;">
-    <!-- Title and rating row -->
-    <div class="d-flex align-items-start justify-content-between mb-3">
-      <div>
-        <h2 class="fw-bold">{{ venue.name }}</h2>
-        <p class="text-muted mb-0">{{ venue.location }}</p>
+<section class="venue-details-section">
+  <div class="container p-3 p-md-4">
+
+    <!-- Card-like container for the detail view -->
+    <div class="details-card p-4 rounded-3">
+      
+      <!-- Title Row -->
+      <div class="d-flex align-items-start justify-content-between mb-3">
+        <h2 class="venue-title fw-bold">
+          {{ venue.name || 'Name of the venue' }}
+        </h2>
+        <!-- Rating badge in the top-right corner -->
+        <div
+          class="rating-badge-container d-flex align-items-center justify-content-between p-2 rounded text-white"
+        >
+          <div>
+            <p class="rating-text m-0 fw-bold">
+              {{ getRatingText(venue.rating || 9.6) }}
+            </p>
+            <p class="rating-reviews m-0 small" style="color: white;">
+              43 reviews
+            </p>
+          </div>
+          <div class="rating-score d-flex align-items-center justify-content-center">
+            <span>{{ venue.rating || 9.6 }}</span>
+          </div>
+        </div>
       </div>
-      <div
-        class="rating-badge d-flex align-items-center justify-content-center"
-        style="width: 50px; height: 50px;"
-      >
-        <span>{{ venue.rating }}</span>
+
+      <!-- Images + Map row -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+          <!-- Image gallery -->
+          <div class="gallery-row d-flex flex-wrap gap-3">
+            <!-- For simplicity, show up to 3 images (or more if you wish) -->
+            <div class="gallery-item" *ngFor="let img of sampleImages; let i = index">
+              <img
+                [src]="img"
+                [alt]="'Venue ' + i"
+                class="img-fluid rounded shadow-sm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-column justify-content-between">
+          <!-- Map Placeholder (In real scenario, you'd integrate an external map API) -->
+          <div id="map" style="height: 300px; width: 100%;" class="mb-4"></div>
+        </div>
       </div>
-    </div>
-  
-    <!-- Image gallery row (example: 3 images) -->
-    <div class="row mb-3">
-      <div class="col-4">
-        <img
-          [src]="venue.imageUrl"
-          alt="Venue primary"
-          style="width: 100%; height: 120px; object-fit: cover;"
-          class="rounded"
-        />
+
+      <!-- More detailed description -->
+      <h4 class="fw-semibold mb-2">More detailed description</h4>
+      <p class="venue-description mb-4">
+        {{ venue.description || 
+          'This is ChatGPT speaking, imagine standing at the edge of a vast, mist-covered forest...' 
+        }}
+      </p>
+
+      <!-- Example "Reserve" button or Pricing button -->
+      <div class="text-center mb-4">
+        <button class="btn btn-success reserve-btn">Reserve</button>
       </div>
-      <div class="col-4">
-        <img
-          src="assets/images/venue2.jpg"
-          alt="Venue second"
-          style="width: 100%; height: 120px; object-fit: cover;"
-          class="rounded"
-        />
+
+      <!-- Guest reviews -->
+      <div class="guest-reviews">
+        <h5 class="mb-3">Guest reviews</h5>
+
+        <!-- Loop over reviews -->
+        <div
+          class="review-card p-3 my-2 rounded"
+          *ngFor="let review of reviews"
+        >
+          <p class="fw-bold mb-1">{{ review.name }}</p>
+          <p class="mb-2" style="font-size: 0.95rem;">
+            {{ review.text }}
+          </p>
+          <div class="review-rating small text-muted d-inline-block px-2 py-1 rounded">
+            {{ review.rating }}
+          </div>
+        </div>
       </div>
-      <div class="col-4">
-        <img
-          src="assets/images/venue3.jpg"
-          alt="Venue third"
-          style="width: 100%; height: 120px; object-fit: cover;"
-          class="rounded"
-        />
-      </div>
-    </div>
-  
-    <!-- Detailed description -->
-    <h4 class="mb-2">More detailed description</h4>
-    <p>
-      <!-- Example text, or you can just do `{{ venue.description }}` -->
-      {{ venue.description }}
-    </p>
-  
-    <!-- Maybe a map, or location details -->
-    <div class="d-flex align-items-start mt-3">
-      <div class="flex-grow-1">
-        <img src="assets/images/map-placeholder.jpg" style="width: 100%; max-width: 250px;" alt="Map" />
-      </div>
-    </div>
-  
-    <!-- Reservation button or pricing details -->
-    <div class="mt-4">
-      <button class="btn btn-success">Reserve</button>
-    </div>
-  
-    <!-- Example "Guest reviews" section -->
-    <div class="mt-5">
-      <h5>Guest reviews</h5>
-      <!-- Just a sample. Typically, you'd loop over an array of reviews. -->
-      <div class="review-card p-3 my-2 rounded" style="background-color: #f8f8f8;">
-        <p class="fw-bold">Name Surname</p>
-        <p class="mb-1" style="font-size: 0.9rem;">
-          This is an example review...
-        </p>
-        <div class="small text-muted">Rating: 8.7</div>
-      </div>
-      <div class="review-card p-3 my-2 rounded" style="background-color: #f8f8f8;">
-        <p class="fw-bold">Name Surname</p>
-        <p class="mb-1" style="font-size: 0.9rem;">
-          Another example review...
-        </p>
-        <div class="small text-muted">Rating: 6.9</div>
-      </div>
-    </div>
-  </div>
-  
+
+    </div><!-- /details-card -->
+
+  </div><!-- /container -->
+</section>

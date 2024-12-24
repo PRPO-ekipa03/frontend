@@ -1,46 +1,82 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { CalendarComponent } from "../calendar/calendar.component";
 import { VenueDetailsComponent } from './venue-details/venue-details.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
-import { VenueService } from '../core/services/venueService'; // <-- Make sure this path is correct
-import { Venue } from '../shared/models/venue';             // <-- Make sure this path is correct
+
+import { VenueService } from '../core/services/venueService'; 
+import { Venue } from '../shared/models/venue';
+
+import { VenuesListComponent } from './venues-list/venues-list.component'; // <-- import child
 
 @Component({
   selector: 'app-venues',
   standalone: true,
-  imports: [CalendarComponent, VenueDetailsComponent, FormsModule, CommonModule, PortalModule],
+  imports: [
+    // All needed imports
+    CalendarComponent,
+    VenueDetailsComponent,
+    VenuesListComponent,  // <-- declare the child component here
+    FormsModule,
+    CommonModule,
+    PortalModule,
+    RouterModule
+  ],
   templateUrl: './venues.component.html',
   styleUrls: ['./venues.component.css']
 })
-export class VenuesComponent  {
+export class VenuesComponent implements OnInit {
   @ViewChild(CdkPortal) portal!: CdkPortal;
-  @ViewChild('dateButton', { static: true }) dateButton!: ElementRef; // Button reference
+  @ViewChild('dateButton', { static: true }) dateButton!: ElementRef;
   
   private overlayRef!: OverlayRef;
-  selectedDate: string | null = null; // Stores the selected date as a string
-  formattedDate: string | null = null; // Stores the formatted date for the input
+  selectedDate: string | null = null;
+  formattedDate: string | null = null;
 
+  // The user input and suggestions logic
   locations: string[] = [
     'Ljubljana', 'Maribor', 'Celje', 'Kranj', 'Velenje', 'Koper', 'Novo Mesto',
     'Ptuj', 'Trbovlje', 'Kamnik', 'Jesenice', 'Nova Gorica', 'Murska Sobota',
     'Domžale', 'Škofja Loka', 'Postojna', 'Sežana', 'Izola', 'Piran', 'Bled'
   ];
-  filteredLocations: string[] = []; // For filtered suggestions
-  userInput: string = ''; // Current user input
-  bestSuggestion: string | null = null; // Stores the best matching suggestion
+  filteredLocations: string[] = [];
+  userInput: string = '';
+  bestSuggestion: string | null = null;
 
-  venues: Venue[] = [];     // Holds the list of venues (mocked or filtered)
-  hasSearched = false;      // Indicates if the search button has been clicked
+  venues: Venue[] = [];
+  hasSearched = false;
+  showingDetail = false;
 
   constructor(
     private readonly overlay: Overlay,
-    private readonly venueService: VenueService 
-  ) { }
+    private readonly venueService: VenueService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {}
 
+  ngOnInit(): void {
+    const child = this.route.snapshot.firstChild;
+    const venueId = child?.paramMap.get('venueId');
+    this.showingDetail = !!venueId;
+    // Listen to navigation events
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        // does param exist?
+        const child = this.route.snapshot.firstChild; 
+        const venueId = child?.paramMap.get('venueId');
+
+        // If we have a param, show detail, otherwise list.
+        this.showingDetail = !!venueId;
+        console.log(this.showingDetail)
+        console.log("aaa")
+      });
+  }
 
   // ============================================================
   // Location / Suggestions Logic 
@@ -69,7 +105,7 @@ export class VenuesComponent  {
     return '';
   }
 
-  acceptSuggestion() {
+  acceptSuggestion(): void {
     if (this.bestSuggestion) {
       this.userInput = this.bestSuggestion;
       this.bestSuggestion = null;
@@ -88,7 +124,7 @@ export class VenuesComponent  {
     }
   }
 
-  openModal() {
+  openModal(): void {
     const positionStrategy = this.overlay
       .position()
       .flexibleConnectedTo(this.dateButton.nativeElement)
@@ -123,15 +159,20 @@ export class VenuesComponent  {
   // ============================================================
   searchVenues(): void {
     // Once the user searches, mark hasSearched as true
+    if (this.showingDetail) this.showingDetail=false;
     this.hasSearched = true;
 
-    // Call service to get venues (mocked or filtered).
-    // Suppose getVenues takes location & date as parameters:
-    //   - If these values are empty, it returns random mock data.
-    //   - Else, it returns filtered mock data based on location/date.
+    // Call service to get venues
     this.venueService.getVenues()
       .subscribe((data: Venue[]) => {
         this.venues = data;
       });
+  }
+
+  onNavigateToDetail(venueId: number): void {
+    
+    this.router.navigate(['/venues', venueId]);
+
+    this.showingDetail = true
   }
 }

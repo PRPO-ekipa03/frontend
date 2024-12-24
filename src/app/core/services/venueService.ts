@@ -16,6 +16,11 @@ export class VenueService {
     return of(MOCK_VENUES);
   }
 
+  getVenueById(id: number): Observable<Venue | undefined> {
+    const foundVenue = MOCK_VENUES.find(v => v.id === id);
+    return of(foundVenue);
+  }
+
 
   /* Example of actual function call for venues.
   getVenues(
@@ -46,4 +51,13 @@ export class VenueService {
   }
 
   */
+
+  /*
+   * Example real version of getVenueById() with HTTP call.
+   * 
+   * getVenueById(id: number): Observable<Venue> {
+   *   // Suppose your API endpoint is something like /api/venues/:id
+   *   return this.http.get<Venue>(`${this.baseUrl}/venues/${id}`);
+   * }
+   */
 }
