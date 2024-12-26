@@ -1,0 +1,42 @@
+<app-auth>
+    <!-- Example simple login form -->
+    <h3>Log in to your account</h3>
+    <form>
+      <!-- Email Field -->
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          id="email"
+          type="text"
+          class="form-control"
+          placeholder="example@example.com"
+          required
+        />
+      </div>
+      
+      <!-- Password Field -->
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          placeholder=""
+          required
+        />
+      </div>
+  
+      <!-- Forgot Password Link -->
+      <div class="mt-3 mb-3">
+        <a href="/forgot-password" class="forgot-password-link">
+          Forgot your password?
+        </a>
+      </div>
+      
+      <!-- Submit Button -->
+      <button class="btn btn-success w-100" type="submit">
+        Log in
+      </button>
+    </form>
+  </app-auth>
+  

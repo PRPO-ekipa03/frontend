@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { VenuesComponent } from './venues/venues.component';
 import { VenueDetailsComponent } from './venues/venue-details/venue-details.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 export const routes: Routes = [
@@ -13,6 +15,10 @@ export const routes: Routes = [
             { path: ':venueId', component: VenueDetailsComponent },
         ]
       },
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+
+
     //{ path: 'venues/:venueId', component: VenueDetailsComponent }, 
 ];
 
