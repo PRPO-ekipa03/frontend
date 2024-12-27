@@ -1,0 +1,178 @@
+<div class="steps-title">
+  <h1>List your venue. It’s never been simpler.</h1>
+</div>
+
+<div class="steps-container">
+
+  <!-- STEP 1 -->
+  <div
+    class="step-item"
+    data-step="1"
+    [class.expanded]="openStep === 1"
+    (click)="onStepItemClick($event, 1, stepContent1)"
+  >
+    <div class="step-header" (click)="toggleStep(1, stepContent1); $event.stopPropagation()">
+      <div
+        class="step-circle"
+        [class.completed]="stepsCompleted[0]"
+      ></div>
+      <span class="step-label">Start by providing basic information</span>
+    </div>
+
+    <!-- Arrow top-right -->
+    <i
+      class="bi"
+      (click)="toggleStep(1, stepContent1); $event.stopPropagation()"
+      [ngClass]="{
+        'bi-chevron-down': openStep !== 1,
+        'bi-chevron-up': openStep === 1,
+        'open': openStep === 1
+      }"
+    ></i>
+
+    <!-- Collapsible content (form fields + button) -->
+    <div class="expanded-content" #stepContent1>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label>Venue name</label>
+          <input type="text" class="form-control" placeholder="Value">
+        </div>
+        <div class="col-6">
+          <label>Website</label>
+          <input type="text" class="form-control" placeholder="Value">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label>Address</label>
+          <input type="text" class="form-control" placeholder="Value">
+        </div>
+        <div class="col-6">
+          <label>Social media links</label>
+          <input type="text" class="form-control" placeholder="Value">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>Contact information</label>
+        <input type="text" class="form-control" placeholder="Value">
+      </div>
+      <button class="btn btn-success" (click)="markCompleted(1, stepContent1); $event.stopPropagation()">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div
+    class="step-item"
+    data-step="2"
+    [class.expanded]="openStep === 2"
+    (click)="onStepItemClick($event, 2, stepContent2)"
+  >
+    <div class="step-header" (click)="toggleStep(2, stepContent2); $event.stopPropagation()">
+      <div class="step-circle" [class.completed]="stepsCompleted[1]"></div>
+      <span class="step-label">Give us a description of your venue</span>
+    </div>
+    <i
+      class="bi"
+      (click)="toggleStep(2, stepContent2); $event.stopPropagation()"
+      [ngClass]="{
+        'bi-chevron-down': openStep !== 2,
+        'bi-chevron-up': openStep === 2,
+        'open': openStep === 2
+      }"
+    ></i>
+
+    <div class="expanded-content" #stepContent2>
+      <p>Any fields or forms you want for the second step go here.</p>
+      <button class="btn btn-success" (click)="markCompleted(2, stepContent2); $event.stopPropagation()">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div
+    class="step-item"
+    data-step="3"
+    [class.expanded]="openStep === 3"
+    (click)="onStepItemClick($event, 3, stepContent3)"
+  >
+    <div class="step-header" (click)="toggleStep(3, stepContent3); $event.stopPropagation()">
+      <div class="step-circle" [class.completed]="stepsCompleted[2]"></div>
+      <span class="step-label">What’s your availability and pricing?</span>
+    </div>
+    <i
+      class="bi"
+      (click)="toggleStep(3, stepContent3); $event.stopPropagation()"
+      [ngClass]="{
+        'bi-chevron-down': openStep !== 3,
+        'bi-chevron-up': openStep === 3,
+        'open': openStep === 3
+      }"
+    ></i>
+
+    <div class="expanded-content" #stepContent3>
+      <p>Fields for availability, schedule, pricing details, etc.</p>
+      <button class="btn btn-success" (click)="markCompleted(3, stepContent3); $event.stopPropagation()">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div
+    class="step-item"
+    data-step="4"
+    [class.expanded]="openStep === 4"
+    (click)="onStepItemClick($event, 4, stepContent4)"
+  >
+    <div class="step-header" (click)="toggleStep(4, stepContent4); $event.stopPropagation()">
+      <div class="step-circle" [class.completed]="stepsCompleted[3]"></div>
+      <span class="step-label">Provide pictures of your venue</span>
+    </div>
+    <i
+      class="bi"
+      (click)="toggleStep(4, stepContent4); $event.stopPropagation()"
+      [ngClass]="{
+        'bi-chevron-down': openStep !== 4,
+        'bi-chevron-up': openStep === 4,
+        'open': openStep === 4
+      }"
+    ></i>
+
+    <div class="expanded-content" #stepContent4>
+      <p>Fields to upload or link pictures, etc.</p>
+      <button class="btn btn-success" (click)="markCompleted(4, stepContent4); $event.stopPropagation()">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div
+    class="step-item"
+    data-step="5"
+    [class.expanded]="openStep === 5"
+    (click)="onStepItemClick($event, 5, stepContent5)"
+  >
+    <div class="step-header" (click)="toggleStep(5, stepContent5); $event.stopPropagation()">
+      <div class="step-circle" [class.completed]="stepsCompleted[4]"></div>
+      <span class="step-label">Verify your ownership</span>
+    </div>
+    <i
+      class="bi"
+      (click)="toggleStep(5, stepContent5); $event.stopPropagation()"
+      [ngClass]="{
+        'bi-chevron-down': openStep !== 5,
+        'bi-chevron-up': openStep === 5,
+        'open': openStep === 5
+      }"
+    ></i>
+
+    <div class="expanded-content" #stepContent5>
+      <p>Finally, instructions to verify you’re the rightful owner/manager.</p>
+      <button class="btn btn-success" (click)="markCompleted(5, stepContent5); $event.stopPropagation()">Continue</button>
+    </div>
+  </div>
+
+  <!-- Bottom Buttons -->
+  <div class="bottom-buttons">
+    <button class="btn-back">Back</button>
+    <button class="btn-success">I’m done!</button>
+  </div>
+</div>
+
+
