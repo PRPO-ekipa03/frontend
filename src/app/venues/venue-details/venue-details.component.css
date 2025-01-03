@@ -2,232 +2,231 @@
    Container for the entire details component
 ***********************************************/
 .venue-details-section {
-    background-color: #ECE2D0; /* match your overall background */
-    padding: 2rem 0; /* some vertical spacing */
-    padding-top: 50px !important
-  }
-  
-  .details-card {
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  }
-  
-  /***********************************************
-     Title and Rating
-  ***********************************************/
-  .venue-title {
-    font-size: 1.5rem;
-  }
-  
-  .rating-badge-container {
-    background-color: #1C1E1C; /* Default dark background */
-    color: white;
-    border-radius: 3px;
-  }
-  
-  .rating-score {
-    background-color: #40A578; /* Default green for Excellent */
-    color: white;
-    font-weight: bold;
-    width: 40px;
-    height: 40px;
-    border-radius: 16%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10px;
-  }
-  
-  .rating-text {
-    font-size: 14px;
-    margin: 0;
-  }
-  
-  .rating-reviews {
-    font-size: 12px;
-    color: white;
-    margin: 0;
-  }
-  
-  /***********************************************
-     Gallery + Map Row
-  ***********************************************/
-  .gallery-row {
-    gap: 1rem; /* spacing between images */
-  }
-  
-  .gallery-item {
-    flex: 0 0 auto;
-    width: calc(33.33% - 0.66rem); /* 3 images in a row, approx. */
-    /* Or use a simpler approach (like a fixed width/height) for each. */
-  }
-  
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .map-placeholder {
-    background-color: #f8f8f8;
-    border: 2px dashed #ccc;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /***********************************************
-     Description + Reserve button
-  ***********************************************/
-  .venue-description {
-    line-height: 1.6;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .reserve-btn {
-    background-color: #9DDE8B;
-    color: #000;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
-    border-radius: 20px;
-    border: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .reserve-btn:hover {
-    background-color: #ffffff;
-    color: #004349;
-    transform: scale(1.05);
-  }
-  
-  /***********************************************
-     Guest reviews
-  ***********************************************/
-  .guest-reviews {
-    margin-top: 2rem;
-  }
-  
-  .review-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-  }
-  
-  .review-card p {
-    margin: 0;
-  }
-  
-  .review-rating {
-    background-color: #9DDE8B;
-    color: #000;
-    font-weight: bold;
-    border-radius: 10px;
-  }
+  background-color: #ECE2D0; /* match your overall background */
+  padding: 2rem 0; /* some vertical spacing */
+  padding-top: 50px !important
+}
 
-  /* One image - large full-width */
+.details-card {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/***********************************************
+    Title and Rating
+***********************************************/
+.venue-title {
+  font-size: 1.5rem;
+}
+
+.rating-badge-container {
+  background-color: #1C1E1C; /* Default dark background */
+  color: white;
+  border-radius: 3px;
+}
+
+.rating-score {
+  background-color: #40A578; /* Default green for Excellent */
+  color: white;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 16%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.rating-text {
+  font-size: 14px;
+  margin: 0;
+}
+
+.rating-reviews {
+  font-size: 12px;
+  color: white;
+  margin: 0;
+}
+
+/***********************************************
+    Gallery + Map Row
+***********************************************/
+.gallery-row {
+  gap: 1rem; /* spacing between images */
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: calc(33.33% - 0.66rem); /* 3 images in a row, approx. */
+  /* Or use a simpler approach (like a fixed width/height) for each. */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.map-placeholder {
+  background-color: #f8f8f8;
+  border: 2px dashed #ccc;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/***********************************************
+    Description + Reserve button
+***********************************************/
+.venue-description {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+.reserve-btn {
+  background-color: #9DDE8B;
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reserve-btn:hover {
+  background-color: #ffffff;
+  color: #004349;
+  transform: scale(1.05);
+}
+
+/***********************************************
+    Guest reviews
+***********************************************/
+.guest-reviews {
+  margin-top: 2rem;
+}
+
+.review-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.review-card p {
+  margin: 0;
+}
+
+.review-rating {
+  background-color: #9DDE8B;
+  color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+/* One image - large full-width */
 .single-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  /* Two images - side by side */
-  .two-images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  
-  .two-images .image-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  /* Three images - 1 large and 2 small */
-  .three-images {
-    display: grid;
-    grid-template-rows: auto auto;
-    gap: 16px;
-  }
-  
-  .three-images .big-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    grid-row: span 2;
-    min-height: 390px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
-  }
-  
-  .three-images .small-images {
-    display: grid;
-    max-width: 270px; /* Maximum width for smaller images */
-    max-height: 195px; /* Maximum height for smaller images */
-    object-fit: cover; /* Ensures the image aspect ratio is preserved */
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  
-  .three-images .small-images .image-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+/* Two images - side by side */
+.two-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.two-images .image-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Three images - 1 large and 2 small */
+.three-images {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.three-images .big-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-row: span 2;
+  min-height: 390px;
+
+}
+
+.three-images .small-images {
+  display: grid;
+  max-width: 270px; /* Maximum width for smaller images */
+  max-height: 195px; /* Maximum height for smaller images */
+  object-fit: cover; /* Ensures the image aspect ratio is preserved */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.three-images .small-images .image-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
   /* A container for leftover images (beyond the first 3) */
 .additional-images {
-    display: flex;            /* or grid, if you prefer a grid layout */
-    flex-wrap: wrap;          /* wrap to next line if many images */
-    gap: 16px;                /* spacing between extra images */
-  }
-  
-  /* Example of smaller thumbnail styling */
-  .additional-images .thumb-img {
-    width: 120px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
-  }
-  
-  /* More than 3 images - grid layout */
-  .grid-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  
-  .grid-gallery .more-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  
-  .grid-gallery .image-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  display: flex;            /* or grid, if you prefer a grid layout */
+  flex-wrap: wrap;          /* wrap to next line if many images */
+  gap: 16px;                /* spacing between extra images */
+}
+
+/* Example of smaller thumbnail styling */
+.additional-images .thumb-img {
+  width: 120px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+/* More than 3 images - grid layout */
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-gallery .more-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-gallery .image-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+/***********************************************
+    Responsive Adjustments
+***********************************************/
+@media (max-width: 768px) {
+  .rating-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
   }
 
-  
-  /***********************************************
-     Responsive Adjustments
-  ***********************************************/
-  @media (max-width: 768px) {
-    .rating-badge {
-      width: 50px;
-      height: 50px;
-      font-size: 0.9rem;
-    }
-  
-    .venue-title {
-      font-size: 1.25rem;
-    }
-  
-    .gallery-item {
-      width: 100%; /* stack images vertically if needed */
-    }
+  .venue-title {
+    font-size: 1.25rem;
   }
-  
+
+  .gallery-item {
+    width: 100%; /* stack images vertically if needed */
+  }
+}

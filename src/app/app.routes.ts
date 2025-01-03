@@ -5,6 +5,7 @@ import { VenueDetailsComponent } from './venues/venue-details/venue-details.comp
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ListVenueComponent } from './list-venue/list-venue.component';
+import { SettingsComponent } from './settings/settings.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomepageComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'list-venue', component: ListVenueComponent },
+    { path: 'settings', component: SettingsComponent },
 
 
     //{ path: 'venues/:venueId', component: VenueDetailsComponent }, 

@@ -2,34 +2,34 @@
 	font-family: 'Dela Gothic One', sans-serif;
 	font-size: 1.5rem;
 	transition: color 0.5s ease;
-  }
-  
-  .navbar {
+}
+
+.navbar {
 	background-color: transparent;
 	transition: background-color 0s ease, box-shadow 0s ease;
-  }
-  
+}
+
   /* Center the navbar content within a smaller container */
-  .navbar .container {
+.navbar .container {
 	max-width: 1500px;
 	margin: auto;
-  }
+}
   
-  .hero-section {
+.hero-section {
 	position: relative;
 	background-color: #004349;
 	color: #fff;
 	padding-top: 160px;
 	z-index: 1;
-  }
+}
   
   /* Title Font (example) */
-  .display-5 {
+.display-5 {
 	font-family: 'Lalezar', cursive;
-  }
-  
-  /* Search Bar Styling */
-  .search-bar {
+}
+
+/* Search Bar Styling */
+.search-bar {
 	position: absolute;
 	bottom: -10%; /* Position the search bar overlapping the hero and results */
 	left: 50%;
@@ -40,47 +40,47 @@
 	padding: 15px 20px;
 	border-radius: 50px;
 	width: 71%;
-  }
-  
-  /* Input Field Container */
-  .search-input {
+}
+
+/* Input Field Container */
+.search-input {
 	background-color: #eee4f0;
 	padding: 5px;
 	overflow: visible;
 	position: relative;
 	border-radius: 90px;
 	font-family: sans-serif;
-  }
+}
   
   /* If you have special corner radius logic for nth-child(1,2,3), keep it here */
-  .search-input:nth-child(1) {
+.search-input:nth-child(1) {
 	border-radius: 90px 0px 0px 90px;
-  }
+}
   
-  .search-input:nth-child(2) {
+.search-input:nth-child(2) {
 	border-radius: 0;
-  }
+}
   
-  .search-input:nth-child(3) {
+.search-input:nth-child(3) {
 	border-radius: 0px 90px 90px 0px;
-  }
-  
-  .search-input .form-control:focus {
+}
+
+.search-input .form-control:focus {
 	box-shadow: none;
-  }
+}
   
   /* Input Field */
-  .search-input .form-control {
+.search-input .form-control {
 	background-color: transparent;
 	border: none;
 	font-size: 1rem;
 	color: #333;
 	padding-left: 2.5rem;
 	height: 45px;
-  }
+}
   
   /* Input Group Text (Icons) */
-  .search-input .input-group-text {
+.search-input .input-group-text {
 	background-color: transparent;
 	border: none;
 	color: #6c757d;
@@ -91,10 +91,10 @@
 	font-size: 1.1rem;
 	line-height: 45px;
 	pointer-events: none;
-  }
+}
   
   /* Date button styling */
-  .date-button {
+.date-button {
 	background-color: #eee4f0;
 	border: none;
 	font-size: 1rem;
@@ -105,15 +105,15 @@
 	text-align: left;
 	border-radius: 10px;
 	cursor: pointer;
-  }
+}
   
   /* Button hover effect */
-  .date-button:hover {
+.date-button:hover {
 	background-color: #ddd;
-  }
+}
   
-  /* Suggestion dropdown styles, if used */
-  .dropdown-menu {
+/* Suggestion dropdown styles, if used */
+.dropdown-menu {
 	max-height: 200px;
 	overflow: auto;
 	position: absolute;
@@ -122,14 +122,14 @@
 	z-index: 1050;
 	display: block;
 	width: 100%;
-  }
+}
   
-  .dropdown-item {
+.dropdown-item {
 	cursor: pointer;
-  }
+}
   
-  /* Ghost text wrapper */
-  .ghost-wrapper {
+/* Ghost text wrapper */
+.ghost-wrapper {
 	position: absolute;
 	top: 50%;
 	left: 2.5rem; /* space for the icon */
@@ -141,33 +141,33 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: calc(100% - 2.5rem);
-  }
-  
-  .ghost-text {
+}
+
+.ghost-text {
 	display: inline-block;
 	width: 100%;
-  }
+}
   
   /* Only the suffix (the part user hasn't typed yet) should appear lighter */
-  .ghost-suffix {
+.ghost-suffix {
 	color: #ccc;
-  }
+}
   
   /* Ensure the actual input text sits on top */
-  input.form-control.bg-transparent {
+input.form-control.bg-transparent {
 	position: relative;
 	background: transparent;
 	z-index: 1;
 	color: #333;
-  }
+}
   
   /* Adjust Search Button icon effect */
-  .btn i {
+.btn i {
 	color: #6c757d;
 	transition: transform 0.3s ease;
-  }
+}
   
-  .btn:hover i {
+.btn:hover i {
 	transform: scale(1.1);
-  }
+}
   

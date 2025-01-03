@@ -1,34 +1,33 @@
 /* Fill the entire screen with the background color #171A17 */
 .auth-background {
-    background-color: #171A17;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Brand styling (the top text "Event4You") */
-  .brand {
-    color: #ffffff;
-    margin-bottom: 2rem;
-    font-size: 1.8rem; /* Adjust as needed */
-    font-family: 'Dela Gothic One', sans-serif;
-  }
-  
-  /* Centered container with color #1C1E1C */
-  .auth-container {
-    background-color: #1C1E1C;
-    width: 25%;         /* Adjust as needed */
-    min-width: 50px;
-    padding: 2rem;
-    border-radius: 8px;
-    color: #ffffff;       /* White text */
-    text-align: center;   /* Center the form elements */
-    align-items: stretch;          /* Horizontally center */
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
-  
-  
+  background-color: #171A17;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Brand styling (the top text "Event4You") */
+.brand {
+  color: #ffffff;
+  margin-bottom: 2rem;
+  font-size: 1.8rem; /* Adjust as needed */
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+/* Centered container with color #1C1E1C */
+.auth-container {
+  background-color: #1C1E1C;
+  width: 25%;         /* Adjust as needed */
+  min-width: 50px;
+  padding: 2rem;
+  border-radius: 8px;
+  color: #ffffff;       /* White text */
+  text-align: center;   /* Center the form elements */
+  align-items: stretch;          /* Horizontally center */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+

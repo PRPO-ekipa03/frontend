@@ -1,48 +1,48 @@
 /* Possibly the same styles as login.component.css, or you can keep them in a shared file */
 .form-control {
-    background-color: #1C1E1C;  /* Same color as container */
-    color: #ffffff;            /* Text color inside the input (when typed) */
-    border: 1px solid #666;    /* Border color (adjust as needed) */
-    border-radius: 4px;
-    padding: 0.5rem;
-    /* Remove default box-shadow on focus if using Bootstrap */
-    box-shadow: none;
-  }
-
-  .form-control:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 15px 2px #9DDE8B; /* Green glow shadow */
+  background-color: #1C1E1C;  /* Same color as container */
+  color: #ffffff;            /* Text color inside the input (when typed) */
+  border: 1px solid #666;    /* Border color (adjust as needed) */
+  border-radius: 4px;
+  padding: 0.5rem;
+  /* Remove default box-shadow on focus if using Bootstrap */
+  box-shadow: none;
 }
+
+.form-control:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 15px 2px #9DDE8B; /* Green glow shadow */
+}
+
 .mb-4 {
-    text-align: left;
+  text-align: left;
 }
 
 .mb-2 {
-    text-align: left;
+  text-align: left;
 }
 
 h3 {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .form-control::placeholder {
-    color: #666; 
-    opacity: 1;   /* Ensure opacity is 100% so color is not “faded” */
-  }
- 
-  .btn {
-    background-color: #9DDE8B;
-    color: #000;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 40px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #ffffff;
-    color: #004349;
-    transform: scale(1.05);
-  }
-  
+  color: #666; 
+  opacity: 1;   /* Ensure opacity is 100% so color is not “faded” */
+}
+
+.btn {
+  background-color: #9DDE8B;
+  color: #000;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: #004349;
+  transform: scale(1.05);
+}
