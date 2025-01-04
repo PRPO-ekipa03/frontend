@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as L from 'leaflet';
 
 import { Venue } from '../../shared/models/venue';
@@ -48,7 +48,8 @@ export class VenueDetailsComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly venueService: VenueService
+    private readonly venueService: VenueService,
+    private readonly router: Router 
   ) {}
 
   ngOnInit(): void {
@@ -105,5 +106,20 @@ export class VenueDetailsComponent implements OnInit {
     if (rating >= 9 && rating < 10) return 'rating-excellent';
     if (rating === 10) return 'rating-perfect';
     return 'rating-unknown';
+  }
+
+  onReserve(): void {
+    // Store venue details in localStorage
+    const venueData = {
+      id: this.venue.id,
+      name: this.venue.name,
+      location: this.venue.location,
+      description: this.venue.description,
+      imagePath: this.sampleImages[0]
+    };
+    localStorage.setItem('rentedVenueData', JSON.stringify(venueData));
+
+    // Redirect to create event page
+    this.router.navigate(['/create-event']);
   }
 }

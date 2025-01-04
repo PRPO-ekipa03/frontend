@@ -6,12 +6,13 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ListVenueComponent } from './list-venue/list-venue.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomepageComponent },
     {
         path: 'venues',
-        component: VenuesComponent,        // The parent that shows nav + hero
+        component: VenuesComponent,       
         children: [
             { path: ':venueId', component: VenueDetailsComponent },
         ]
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'list-venue', component: ListVenueComponent },
     { path: 'settings', component: SettingsComponent },
+    { path: 'create-event', component: CreateEventComponent},
 
 
     //{ path: 'venues/:venueId', component: VenueDetailsComponent }, 

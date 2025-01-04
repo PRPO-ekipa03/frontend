@@ -1,0 +1,179 @@
+<body>
+    <header class="top-bar">
+      <div class="logo">Event4You</div>
+      <div class="user-icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </header>
+  
+    <div class="main-container">
+      <!-- First container: Event creation form -->
+      <div class="create-event-container">
+        <h1 class="title">Create your event.</h1>
+  
+        <div class="left-form-box">
+          <form class="event-form">
+            <!-- Event Name -->
+            <div class="form-group">
+              <label for="eventName">Name of the event</label>
+              <input
+                type="text"
+                id="eventName"
+                [(ngModel)]="eventName"
+                name="eventName"
+                placeholder="Event name..."
+              />
+            </div>
+  
+            <!-- Event Type -->
+            <div class="form-group">
+              <label for="eventType">Type of the event</label>
+              <input
+                type="text"
+                id="eventType"
+                [(ngModel)]="eventType"
+                name="eventType"
+                placeholder="e.g. Birthday, Conference..."
+              />
+            </div>
+  
+            <!-- Event Date -->
+            <div class="form-group">
+              <label for="eventDate">Date of the event</label>
+              <input
+                type="date"
+                id="eventDate"
+                [(ngModel)]="eventDate"
+                name="eventDate"
+              />
+            </div>
+  
+            <!-- Rent a venue (link) -->
+            <div class="form-group rent-venue">
+                <span>Would you like to rent a venue?</span>
+                <a href="javascript:void(0)" (click)="saveAndRedirectToVenue()">Click here</a>
+            </div>
+
+            <div *ngIf="selectedVenue" class="mini-venue-card">
+							<button class="close-btn" (click)="removeSelectedVenue()">
+								<i class="fas fa-times"></i> <!-- Font Awesome X Icon -->
+							</button>
+							<div class="venue-image">
+								<img [src]="selectedVenue.imagePath" [alt]="selectedVenue.name" />
+							</div>
+							<div class="venue-info">
+								<h4 class="venue-name">{{ selectedVenue.name }}</h4>
+								<p class="venue-location">{{ selectedVenue.location }}</p>
+							</div>
+						</div>
+
+            <!-- Event Address -->
+            <div class="form-group">
+              <label for="eventAddress">Address of the event</label>
+              <input
+                type="text"
+                id="eventAddress"
+                [(ngModel)]="eventAddress"
+                name="eventAddress"
+                placeholder="Location / address..."
+              />
+            </div>
+  
+            <!-- Invitation Text -->
+            <div class="form-group">
+              <label for="invitationText">Invitation (summary)</label>
+              <textarea
+                id="invitationText"
+                [(ngModel)]="invitationText"
+                name="invitationText"
+                placeholder="Write a short invitation for your guests..."
+              ></textarea>
+            </div>
+  
+            <!-- Add email invites -->
+            <div class="form-group invite-emails">
+              <label for="inviteEmail">Invite by Email</label>
+              <div class="invite-email-input">
+                <input
+                  type="email"
+                  id="inviteEmail"
+                  [(ngModel)]="inviteInput"
+                  name="inviteEmail"
+                  placeholder="Enter guest email..."
+                />
+                <button type="button" (click)="addEmail()">Add</button>
+              </div>
+            </div>
+
+						<!-- Proceed Button -->
+						<div class="form-group text-center mt-4">
+							<button type="button" class="proceed-btn" (click)="proceed()">Proceed</button>
+						</div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Second container: Invited emails list -->
+      <div class="invited-emails-container">
+				<p class="invitees-label">Invited</p>
+        <div class="right-invite-box">
+          <div class="invite-item" *ngFor="let email of invitedEmails">
+            <span>{{ email }}</span>
+            <button
+							type="button"
+							class="remove-btn"
+							(click)="removeEmail(email)"
+						>
+							<i class="fas fa-times"></i> <!-- Font Awesome X Icon -->
+						</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<!-- ******* PAYMENT MODAL ******* -->
+		<div class="modal-backdrop" *ngIf="showPaymentModal">
+			<div class="modal-container">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4>Payment Required</h4>
+					<button class="close-icon" (click)="closePaymentModal()">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+				
+				<!-- Modal Content -->
+				<div class="modal-content payment-content">
+					<!-- Payment Details Section -->
+					<div class="payment-info">
+						<p><strong>Venue Name:</strong> {{ selectedVenue?.name }}</p>
+						<p><strong>Venue Address:</strong> {{ selectedVenue?.location }}</p>
+						<p><strong>Date of Reservation:</strong> {{ eventDate | date }}</p>
+						<p><strong>Price of Rent:</strong> {{ selectedVenue?.venuePrice | currency }}</p>
+					</div>
+					
+					<!-- PayPal Button -->
+					<button class="paypal-button" (click)="payWithPayPal()">
+						<span class="paypal-text">
+							<span class="pay-part">Pay</span><span class="pal-part">Pal</span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	
+		<!-- ******* RESERVATION SUCCESSFUL MODAL ******* -->
+		<div class="modal-backdrop" *ngIf="showReservationModal">
+			<div class="modal-container reservation-modal">
+				<div class="modal-header reservation-header">
+					<h2>Event created successfuly!</h2>
+					
+				</div>
+				<div class="modal-content reservation-content">
+					<p>Your event has been created successfully. Check it out by clicking the button below!</p>
+					<button class="ok-btn" (click)="closeReservationModal()">My events</button>
+				</div>
+			</div>
+		</div>
+  </body>
+  

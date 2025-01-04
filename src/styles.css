@@ -2,7 +2,7 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 /* You can add global styles to this file, and also import other style files */
 body, html {
-    background-color: #171A17 !important; /* Light gray */
+    background-color: #171A17 ; /* Light gray */
     margin: 0;
     height: 100%;
 }

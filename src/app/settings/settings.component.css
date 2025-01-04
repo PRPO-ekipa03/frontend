@@ -1,3 +1,24 @@
+ /* Top bar */
+ .top-bar {
+    width: 100%;
+    background-color: #171A17; /* Teal-ish color */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0 20px;
+  }
+  
+  .top-bar .logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  .top-bar .user-icon {
+    font-size: 1.3rem;
+  }
+
 
 /* Ensure the app root takes up the full height */
 :host {
@@ -47,7 +68,7 @@
 /* Card Title (e.g., <h6>) Styling */
 h6 {
 	font-size: 1.8rem;
-	color: #9DDE8B; 
+	color: white; 
 }
 
 /* Nav pills - active state */

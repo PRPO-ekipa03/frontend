@@ -214,7 +214,7 @@
 
 /* Info Section */
 .info-section {
-	background: #f8f8f8;
+	background: #ECE2D0;
 }
 
 /* Button Styling for "Get started for free" */
@@ -235,3 +235,43 @@
     color: black; /* Keep the text color the same */
     transform: scale(1.05); /* Slightly scale up */
 }
+
+/* New Section: Venue Lending (Beige) */
+  .venue-lending {
+	background-color: white; /* Beige background */
+	display: flex;
+  }
+
+  .venue-lending .row {
+	gap: 0rem; /* Reduce spacing between text and image */
+  }
+  
+  /* Title / Headings */
+  .venue-lending h2 {
+	color: #004349; /* Dark teal text for contrast */
+	font-size: 2rem;
+	margin-bottom: 1rem;
+  }
+  
+  /* Paragraph Styling */
+  .venue-lending p {
+	color: black;
+	max-width: 700px; /* Limit width for readability */
+  }
+  
+  /* Bulleted List */
+  .venue-lending ul {
+	max-width: 700px; /* Keep consistent with paragraph */
+  }
+  
+  .venue-lending li {
+	margin-bottom: 0.5rem;
+	color: black; /* Dark teal or #333, whichever you prefer */
+  }
+  
+  /* Button Styling (reuse your .btn-stay-green if desired) */
+  .venue-lending .btn-stay-green {
+	/* You already have .btn-stay-green in your CSS. 
+	   This ensures it's consistent with your existing theme. */
+	margin-top: 1rem;
+  }
