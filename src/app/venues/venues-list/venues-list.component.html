@@ -7,7 +7,7 @@
             *ngFor="let venue of venues"
           >
             <img
-              [src]="venue.imageUrl"
+              [src]="venue.photos[0]"
               alt="Venue"
               class="rounded-3 me-4 venue-image"
             />
@@ -32,7 +32,7 @@
             <div
               class="rating-badge d-flex align-items-center justify-content-center position-absolute"
             >
-              <span>{{ venue.rating }}</span>
+              <span>{{ (venue.averageRating || 0 ) | number:'1.1-1' }}</span>
             </div>
           </div>
         </ng-container>

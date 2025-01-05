@@ -92,6 +92,30 @@
 	line-height: 45px;
 	pointer-events: none;
 }
+
+/* Apply the same "old input" visual styles to the new select */
+.search-input .form-select {
+	background-color: transparent; /* same as old .form-control */
+	border: none;
+	font-size: 1rem;
+	color: #333;
+	padding-left: 2.5rem; /* leave space for icon on the left */
+	height: 45px;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	/* If you want to remove the native arrow (optional), uncomment below:
+	   -webkit-appearance: none;
+	   -moz-appearance: none;
+	   background-image: none;
+	   background-repeat: no-repeat;
+	*/
+  }
+  
+  .search-input .form-select:focus {
+	outline: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+  }
   
   /* Date button styling */
 .date-button {

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Venue } from '../../shared/models/venue';
+import { ResponseVenueBasicDTO } from '../../shared/models/venueBasicResponse'; // Adjust path
 
 @Component({
   selector: 'app-venues-list',
@@ -10,7 +10,7 @@ import { Venue } from '../../shared/models/venue';
   styleUrls: ['./venues-list.component.css']
 })
 export class VenuesListComponent {
-  @Input() venues: Venue[] = [];
+  @Input() venues: ResponseVenueBasicDTO[] = [];
   @Input() hasSearched = false;
 
   @Output() navigateToDetail = new EventEmitter<number>();

@@ -2,26 +2,23 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { CalendarComponent } from "../calendar/calendar.component";
-import { VenueDetailsComponent } from './venue-details/venue-details.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-
-import { VenueService } from '../core/services/venueService'; 
-import { Venue } from '../shared/models/venue';
-
-import { VenuesListComponent } from './venues-list/venues-list.component'; // <-- import child
+import { VenueType } from '../shared/models/venue'; // Your real VenueType enum
+import { VenuesService } from '../core/services/venues.service'; 
+import { VenuesListComponent } from './venues-list/venues-list.component'; 
+import { ResponseVenueBasicDTO } from '../shared/models/venueBasicResponse'; // Adjust path
+import { Page } from '../shared/models/page'; // The Page interface
 
 @Component({
   selector: 'app-venues',
   standalone: true,
   imports: [
-    // All needed imports
     CalendarComponent,
-    VenueDetailsComponent,
-    VenuesListComponent,  // <-- declare the child component here
+    VenuesListComponent,
     FormsModule,
     CommonModule,
     PortalModule,
@@ -35,51 +32,63 @@ export class VenuesComponent implements OnInit {
   @ViewChild('dateButton', { static: true }) dateButton!: ElementRef;
   
   private overlayRef!: OverlayRef;
+
+  // Date selection
   selectedDate: string | null = null;
   formattedDate: string | null = null;
 
-  // The user input and suggestions logic
+  // The user input + suggestions logic
   locations: string[] = [
     'Ljubljana', 'Maribor', 'Celje', 'Kranj', 'Velenje', 'Koper', 'Novo Mesto',
     'Ptuj', 'Trbovlje', 'Kamnik', 'Jesenice', 'Nova Gorica', 'Murska Sobota',
     'Domžale', 'Škofja Loka', 'Postojna', 'Sežana', 'Izola', 'Piran', 'Bled'
   ];
-  filteredLocations: string[] = [];
   userInput: string = '';
   bestSuggestion: string | null = null;
 
-  venues: Venue[] = [];
+  // Final list of venues to display
+  venues: ResponseVenueBasicDTO[] = [];
   hasSearched = false;
   showingDetail = false;
 
+  // VenueType data
+  venueTypes = Object.values(VenueType);
+  selectedVenueType: VenueType | null = null;
+
+  // ============ PAGINATION PROPERTIES ============
+  currentPage: number = 0;
+  pageSize: number = 10;
+
+  // We store the page info from the backend 
+  pageResponse?: Page<ResponseVenueBasicDTO>;
+
   constructor(
     private readonly overlay: Overlay,
-    private readonly venueService: VenueService,
+    private readonly venueService: VenuesService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {}
 
+  // ============================================================
+  // Lifecycle
+  // ============================================================
   ngOnInit(): void {
     const child = this.route.snapshot.firstChild;
     const venueId = child?.paramMap.get('venueId');
     this.showingDetail = !!venueId;
+
     // Listen to navigation events
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        // does param exist?
         const child = this.route.snapshot.firstChild; 
         const venueId = child?.paramMap.get('venueId');
-
-        // If we have a param, show detail, otherwise list.
         this.showingDetail = !!venueId;
-        console.log(this.showingDetail)
-        console.log("aaa")
       });
   }
 
   // ============================================================
-  // Location / Suggestions Logic 
+  // Location / Suggestions Logic
   // ============================================================
   onLocationInput(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -89,8 +98,6 @@ export class VenuesComponent implements OnInit {
     const bestMatch = this.locations.find(loc => 
       loc.toLowerCase().startsWith(this.userInput.toLowerCase())
     );
-
-    // If there's a best match and userInput is not empty and not exactly the match
     if (this.userInput && bestMatch && bestMatch.toLowerCase() !== this.userInput.toLowerCase()) {
       this.bestSuggestion = bestMatch;
     } else {
@@ -113,7 +120,7 @@ export class VenuesComponent implements OnInit {
   }
 
   // ============================================================
-  // Calendar / Date Logic 
+  // Calendar / Date Logic
   // ============================================================
   onDateSelected(date: string): void {
     this.selectedDate = date; 
@@ -155,24 +162,89 @@ export class VenuesComponent implements OnInit {
   }
 
   // ============================================================
-  // Search Venues Logic
+  // VenueType Logic
+  // ============================================================
+  onVenueTypeChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedVenueType = selectElement.value as VenueType;
+    console.log('Selected Venue Type:', this.selectedVenueType);
+  }
+
+  formatVenueType(type: VenueType): string {
+    return type
+      .toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  // ============================================================
+  // Search Venues Logic (with pagination)
   // ============================================================
   searchVenues(): void {
-    // Once the user searches, mark hasSearched as true
-    if (this.showingDetail) this.showingDetail=false;
+    // If user was looking at detail, switch back to the list view
+    if (this.showingDetail) {
+      this.showingDetail = false;
+    }
     this.hasSearched = true;
 
-    // Call service to get venues
-    this.venueService.getVenues()
-      .subscribe((data: Venue[]) => {
-        this.venues = data;
-      });
+    // Prepare filter values
+    const location = this.userInput?.trim();
+    const venueType = this.selectedVenueType;
+    const reservedDate = this.selectedDate;
+
+    // Check if all three filters are provided
+    const hasAllFilters = (location && location.length > 0) 
+                          && (venueType && venueType.length > 0)
+                          && (reservedDate && reservedDate.length > 0);
+
+    if (hasAllFilters) {
+      // Call getAvailableVenues
+      this.venueService.getAvailableVenues(location, venueType, reservedDate)
+        .subscribe({
+          next: (data: ResponseVenueBasicDTO[]) => {
+            this.venues = data; // no pagination for "available" call
+          },
+          error: (err) => {
+            console.error('Error fetching available venues:', err);
+          }
+        });
+    } else {
+      // Use the paginated getVenues
+      this.getVenuesPage(this.currentPage, this.pageSize);
+    }
+  }
+
+  // A separate method to handle pagination calls
+  getVenuesPage(page: number, size: number): void {
+    this.venueService.getVenues(page, size).subscribe({
+      next: (pageResponse: Page<ResponseVenueBasicDTO>) => {
+        this.pageResponse = pageResponse;
+        this.venues = pageResponse.content;
+        // Sync currentPage in case the backend returns a different "number"
+        this.currentPage = pageResponse.number;
+      },
+      error: (err) => {
+        console.error('Error fetching venues page:', err);
+      }
+    });
+  }
+
+  // Pagination helpers
+  nextPage(): void {
+    if (this.pageResponse && !this.pageResponse.last) {
+      this.getVenuesPage(this.currentPage + 1, this.pageSize);
+    }
+  }
+
+  prevPage(): void {
+    if (this.pageResponse && !this.pageResponse.first) {
+      this.getVenuesPage(this.currentPage - 1, this.pageSize);
+    }
   }
 
   onNavigateToDetail(venueId: number): void {
-    
     this.router.navigate(['/venues', venueId]);
-
-    this.showingDetail = true
+    this.showingDetail = true;
   }
 }

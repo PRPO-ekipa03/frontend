@@ -1,5 +1,12 @@
 <section class="venue-details-section">
-  <div class="container p-3 p-md-4">
+  <!-- If still loading, show the spinner -->
+  <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading" class="container p-3 p-md-4">
 
     <!-- Card-like container for the detail view -->
     <div class="details-card p-4 rounded-3">
@@ -9,7 +16,7 @@
         <h2 class="venue-title fw-bold">
           {{ venue.name || 'Name of the venue' }}
         </h2>
-       
+        
       </div>
 
       <!-- Images + Map row -->
@@ -76,14 +83,14 @@
           <div class="rating-badge-container d-flex align-items-center justify-content-between p-2 rounded text-white mb-3">
             <div>
               <p class="rating-text m-0 fw-bold">
-                {{ getRatingText(venue.rating || 9.6) }}
+                {{ getRatingText((venue.averageRating || 0 )) }}
               </p>
               <p class="rating-reviews m-0 small" style="color: white;">
-                43 reviews
+                {{ (venue.ratingCount || 0) | number:'1.1-1' + ' reviews' }}
               </p>
             </div>
             <div class="rating-score d-flex align-items-center justify-content-center">
-              <span>{{ venue.rating || 9.6 }}</span>
+              <span>{{ (venue.averageRating || 0) | number:'1.1-1' }}</span>
             </div>
           </div>
 
@@ -106,26 +113,106 @@
         <button class="btn btn-success reserve-btn" (click)="onReserve()">Reserve</button>
       </div>
 
-      <!-- Guest reviews -->
       <div class="guest-reviews">
-        <h5 class="mb-3">Guest reviews</h5>
-
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Guest reviews</h5>
+          <!-- Add "+" Button -->
+          <button 
+            type="button" 
+            class="btn btn-light btn-sm" 
+            data-bs-toggle="modal" 
+            data-bs-target="#addReviewModal"
+          >
+            Add +
+          </button>
+        </div>
+      
         <!-- Loop over reviews -->
         <div
           class="review-card p-3 my-2 rounded"
           *ngFor="let review of reviews"
         >
-          <p class="fw-bold mb-1">{{ review.name }}</p>
+          <p class="fw-bold mb-1">{{ review.userId }}</p>
           <p class="mb-2" style="font-size: 0.95rem;">
-            {{ review.text }}
+            {{ review.comment }}
           </p>
           <div class="review-rating small text-muted d-inline-block px-2 py-1 rounded">
-            {{ review.rating }}
+            {{ review.ratingValue }}
           </div>
         </div>
       </div>
+      
 
     </div><!-- /details-card -->
 
   </div><!-- /container -->
 </section>
+
+<!-- Add Review Modal -->
+<div 
+  class="modal fade" 
+  id="addReviewModal" 
+  tabindex="-1" 
+  aria-labelledby="addReviewModalLabel" 
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="submitReview()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addReviewModalLabel">Add a Review</h5>
+          <button 
+            type="button" 
+            class="btn-close" 
+            data-bs-dismiss="modal" 
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Rating Value -->
+          <div class="mb-3">
+            <label for="ratingValue" class="form-label">Rating (0-10)</label>
+            <input 
+              type="number" 
+              id="ratingValue" 
+              class="form-control" 
+              [(ngModel)]="newReview.ratingValue" 
+              name="ratingValue" 
+              min="0" 
+              max="10" 
+              required
+            />
+          </div>
+          <!-- Comment -->
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea 
+              id="comment" 
+              class="form-control" 
+              [(ngModel)]="newReview.comment" 
+              name="comment" 
+              rows="3" 
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            [disabled]="!newReview.ratingValue || !newReview.comment"
+          >
+            Submit Review
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

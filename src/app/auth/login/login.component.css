@@ -35,6 +35,10 @@
   transform: scale(1.01);
 }
 
+.btn:focus {
+  color: #000;
+}
+
 h3 {
   margin-bottom: 30px;
   font-family: 'Roboto', sans-serif;

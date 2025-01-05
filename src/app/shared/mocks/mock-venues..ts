@@ -1,5 +1,5 @@
 // mocks/mock-venues.ts
-import { Venue } from '../models/venue';
+import { Venue } from '../models/venueMock';
 
 export const MOCK_VENUES: Venue[] = [
   {

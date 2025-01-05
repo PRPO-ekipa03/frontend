@@ -1,7 +1,7 @@
 // services/venue.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Venue } from '../../shared/models/venue';
+import { Venue } from '../../shared/models/venueMock';
 import { MOCK_VENUES } from '../../shared/mocks/mock-venues.'
 
 @Injectable({

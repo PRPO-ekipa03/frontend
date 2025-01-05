@@ -65,11 +65,18 @@
 		  </button>
 		  <input type="date" id="date-picker" class="d-none" />
 		</div>
-  
-		<!-- Type of event / amount of people Input -->
+
 		<div class="input-group search-input position-relative">
-		  <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
-		  <input type="text" class="form-control" placeholder="Type of event / amount of people" />
+			<span class="input-group-text">
+			<i class="bi bi-people-fill"></i>
+			</span>
+
+			<select class="form-select" [(ngModel)]="selectedVenueType" (change)="onVenueTypeChange($event)">
+			<option [ngValue]="null" disabled>Choose type of event</option>
+			<option *ngFor="let type of venueTypes" [value]="type">
+				{{ formatVenueType(type) }}
+			</option>
+			</select>
 		</div>
   
 		<!-- Search Button -->
