@@ -1,10 +1,17 @@
+<header class="top-bar">
+  <div class="logo">Event4You</div>
+  <div class="user-icon">
+    <i class="fa fa-user"></i>
+  </div>
+</header>
+
 <div class="steps-title">
   <h1>List your venue. It’s never been simpler.</h1>
 </div>
 
 <div class="steps-container">
 
-  <!-- STEP 1 -->
+  <!-- STEP 1: Basic Information -->
   <div
     class="step-item"
     data-step="1"
@@ -12,14 +19,10 @@
     (click)="onStepItemClick($event, 1, stepContent1)"
   >
     <div class="step-header" (click)="toggleStep(1, stepContent1); $event.stopPropagation()">
-      <div
-        class="step-circle"
-        [class.completed]="stepsCompleted[0]"
-      ></div>
+      <div class="step-circle" [class.completed]="stepsCompleted[0]"></div>
       <span class="step-label">Start by providing basic information</span>
     </div>
 
-    <!-- Arrow top-right -->
     <i
       class="bi"
       (click)="toggleStep(1, stepContent1); $event.stopPropagation()"
@@ -30,37 +33,55 @@
       }"
     ></i>
 
-    <!-- Collapsible content (form fields + button) -->
     <div class="expanded-content" #stepContent1>
       <div class="row mb-3">
         <div class="col-6">
-          <label>Venue name</label>
-          <input type="text" class="form-control" placeholder="Value">
+          <label>Venue Name</label>
+          <input type="text" class="form-control" placeholder="Enter venue name" [(ngModel)]="venueData.name">
         </div>
         <div class="col-6">
-          <label>Website</label>
-          <input type="text" class="form-control" placeholder="Value">
+          <label>Address</label>
+          <input type="text" class="form-control" placeholder="Enter the address of the venue" [(ngModel)]="venueData.address">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-6">
-          <label>Address</label>
-          <input type="text" class="form-control" placeholder="Value">
+          <label for="venueType">Venue Type</label>
+          <select id="venueType" class="form-select" [(ngModel)]="selectedVenueType" (change)="onVenueTypeChange($event)">
+            <option [ngValue]="null" disabled selected>Select a venue type</option>
+            <option *ngFor="let type of venueTypes" [value]="type">
+              {{ formatVenueType(type) }}
+            </option>
+          </select>
         </div>
         <div class="col-6">
-          <label>Social media links</label>
-          <input type="text" class="form-control" placeholder="Value">
+          <label for="location">City</label>
+          <select id="location" class="form-select" [(ngModel)]="selectedLocation">
+            <option [ngValue]="null" disabled selected>Select a city</option>
+            <option *ngFor="let location of locations" [value]="location">
+              {{ location }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="mb-3">
-        <label>Contact information</label>
-        <input type="text" class="form-control" placeholder="Value">
+        <label>Contact Information</label>
+        <div class="row">
+          <div class="col-6">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter email address" [(ngModel)]="venueData.contactEmail">
+          </div>
+          <div class="col-6">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" class="form-control" placeholder="Enter phone number" [(ngModel)]="venueData.contactPhone">
+          </div>
+        </div>
       </div>
       <button class="btn btn-success" (click)="markCompleted(1, stepContent1); $event.stopPropagation()">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- STEP 2: Venue Description -->
   <div
     class="step-item"
     data-step="2"
@@ -71,6 +92,7 @@
       <div class="step-circle" [class.completed]="stepsCompleted[1]"></div>
       <span class="step-label">Give us a description of your venue</span>
     </div>
+
     <i
       class="bi"
       (click)="toggleStep(2, stepContent2); $event.stopPropagation()"
@@ -82,12 +104,15 @@
     ></i>
 
     <div class="expanded-content" #stepContent2>
-      <p>Any fields or forms you want for the second step go here.</p>
+      <div class="mb-3">
+        <label>Description</label>
+        <textarea class="form-control" rows="5" placeholder="Enter a detailed description of your venue" [(ngModel)]="venueData.description"></textarea>
+      </div>
       <button class="btn btn-success" (click)="markCompleted(2, stepContent2); $event.stopPropagation()">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 3 -->
+  <!-- STEP 3: Price and Availability -->
   <div
     class="step-item"
     data-step="3"
@@ -98,6 +123,7 @@
       <div class="step-circle" [class.completed]="stepsCompleted[2]"></div>
       <span class="step-label">What’s your availability and pricing?</span>
     </div>
+
     <i
       class="bi"
       (click)="toggleStep(3, stepContent3); $event.stopPropagation()"
@@ -109,12 +135,44 @@
     ></i>
 
     <div class="expanded-content" #stepContent3>
-      <p>Fields for availability, schedule, pricing details, etc.</p>
+      <div class="mb-3 d-flex align-items-center">
+        <label class="me-2 mb-0">Price per day:</label>
+        <div class="input-group" style="max-width: 200px;">
+          <input
+            type="number"
+            class="form-control no-spinner"
+            placeholder="Price"
+            [(ngModel)]="pricePerDay"
+          >
+          <select class="form-select" [(ngModel)]="currency" style="max-width: 90px;">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Available Days -->
+      <div class="mb-3">
+        <label>Available Days:</label>
+        <div class="d-flex flex-wrap">
+          <div class="form-check me-3" *ngFor="let day of days">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [id]="day"
+              [value]="day"
+              (change)="onDaySelectionChange($event, day)"
+            >
+            <label class="form-check-label" [for]="day">{{ day }}</label>
+          </div>
+        </div>
+      </div>
       <button class="btn btn-success" (click)="markCompleted(3, stepContent3); $event.stopPropagation()">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 4 -->
+  <!-- STEP 4: Provide Pictures -->
   <div
     class="step-item"
     data-step="4"
@@ -125,6 +183,7 @@
       <div class="step-circle" [class.completed]="stepsCompleted[3]"></div>
       <span class="step-label">Provide pictures of your venue</span>
     </div>
+
     <i
       class="bi"
       (click)="toggleStep(4, stepContent4); $event.stopPropagation()"
@@ -136,12 +195,15 @@
     ></i>
 
     <div class="expanded-content" #stepContent4>
-      <p>Fields to upload or link pictures, etc.</p>
+      <div class="mb-3">
+        <label>Upload Pictures</label>
+        <input type="file" class="form-control" multiple (change)="onPictureUpload($event)">
+      </div>
       <button class="btn btn-success" (click)="markCompleted(4, stepContent4); $event.stopPropagation()">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 5 -->
+  <!-- STEP 5: Upload Documents -->
   <div
     class="step-item"
     data-step="5"
@@ -152,6 +214,7 @@
       <div class="step-circle" [class.completed]="stepsCompleted[4]"></div>
       <span class="step-label">Verify your ownership</span>
     </div>
+
     <i
       class="bi"
       (click)="toggleStep(5, stepContent5); $event.stopPropagation()"
@@ -163,16 +226,67 @@
     ></i>
 
     <div class="expanded-content" #stepContent5>
-      <p>Finally, instructions to verify you’re the rightful owner/manager.</p>
+      <div class="mb-3">
+        <label>Upload Ownership Documents</label>
+        <input type="file" class="form-control" multiple (change)="onDocumentUpload($event)">
+      </div>
       <button class="btn btn-success" (click)="markCompleted(5, stepContent5); $event.stopPropagation()">Continue</button>
     </div>
   </div>
-
-  <!-- Bottom Buttons -->
-  <div class="bottom-buttons">
-    <button class="btn-back">Back</button>
-    <button class="btn-success">I’m done!</button>
-  </div>
 </div>
 
+<!-- Bottom Buttons -->
+<div class="bottom-buttons mt-5">
+  <button class="btn btn-success back-btn me-2" (click)="navigateToProfile()">Back</button>
+  <button class="btn btn-success done-btn" data-bs-toggle="modal" data-bs-target="#summaryModal">I’m done!</button>
+</div>
 
+<!-- Summary Modal -->
+<div 
+  class="modal fade" 
+  id="summaryModal" 
+  tabindex="-1" 
+  aria-labelledby="summaryModalLabel" 
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="summaryModalLabel">Review Your Venue Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Basic Information</h6>
+        <p><strong>Venue Name:</strong> {{ venueData.name }}</p>
+        <p><strong>Address:</strong> {{ venueData.address }}</p>
+        <p><strong>Venue Type:</strong> {{ formatVenueType(venueData.venueType) }}</p>
+        <p><strong>City:</strong> {{ selectedLocation }}</p>
+        <p><strong>Email:</strong> {{ venueData.contactEmail }}</p>
+        <p><strong>Phone:</strong> {{ venueData.contactPhone }}</p>
+
+        <hr>
+
+        <h6>Description</h6>
+        <p>{{ venueData.description }}</p>
+
+        <hr>
+
+        <h6>Pricing and Availability</h6>
+        <p><strong>Price per day:</strong> {{ pricePerDay }}</p>
+
+        <hr>
+
+        <h6>Uploaded Pictures</h6>
+        <div class="d-flex flex-wrap">
+          <div *ngFor="let pic of venueData.photos" class="me-2 mb-2">
+            <img [src]="pic" alt="Venue Picture" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+        <button type="button" class="btn btn-primary" (click)="finalizeListing()" data-bs-dismiss="modal">Confirm and List Venue</button>
+      </div>
+    </div>
+  </div>
+</div>

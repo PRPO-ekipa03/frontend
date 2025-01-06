@@ -1,9 +1,30 @@
 /* 1) Overall container styling */
 :host {
   display: block;
-  background-color: #EFE9E4; /* Light beige background */
+  background-color: #ECE2D0; /* Light beige background */
   min-height: 100vh;
   font-family: sans-serif;   /* Example global font */
+}
+
+/* Top bar */
+.top-bar {
+  width: 100%;
+  background-color: #034C4C; /* Teal-ish color */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.top-bar .logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.top-bar .user-icon {
+  font-size: 1.3rem;
 }
 
 /* Title area */
@@ -78,11 +99,11 @@
   top: 12px;
   right: 1rem;
   font-size: 1.2rem;
-  transition: transform 1s ease;
+  transition: transform 0.3s ease;
 }
 
 .step-item i.open {
-  top:12px;
+  transform: rotate(180deg);
 }
 
 /* 4) Expand/collapse animation with max-height trick */
@@ -92,7 +113,7 @@
   justify-content: space-between; /* Push button to the bottom */
   max-height: 0;
   overflow: hidden;
-  /* 0.3s or adjust to your taste */
+  transition: max-height 0.9s ease; /* Smooth transition */
 }
 
 /* Form styling inside expanded area */
@@ -105,6 +126,13 @@ label {
   border-radius: 4px;
   border: 1px solid #ccc;
   margin-bottom: 0rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none; /* Remove the default blue outline */
+  box-shadow: none !important; /* Remove the shadow applied by Bootstrap */
+  border-color: #ccc; /* Optional: Reset border color */
 }
 
 /* Button inside the expanded form (green) */
@@ -120,7 +148,6 @@ label {
   align-self: flex-end;
   margin-bottom: 10px;
   margin-right: 10px;
-
 }
 .btn-success:hover {
   background-color: #86cc72;
@@ -128,25 +155,77 @@ label {
 }
 
 /* 5) Bottom buttons (Back, I'm done) */
+/* Bottom buttons container */
 .bottom-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 2rem;
-  max-width: 900px;
-  margin-left: auto;
+  gap: 600px; /* Adjust this value to increase spacing */
+
+  max-width: 1200px; /* Adjust as needed for your layout */
+  margin-left: 435px;
   margin-right: auto;
   padding: 0 1rem;
 }
 
-.btn-back {
-  background-color: #40403F;
-  color: #fff;
+/* Done button */
+.done-btn {
+  background-color: #9DDE8B;
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 20px;
   border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-.btn-back:hover {
-  opacity: 0.85;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.done-btn:hover {
+  background-color: #86cc72;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* Back button */
+.back-btn {
+  background-color: #b3b3b3; /* Light gray background */
+  color: #000; /* Black text */
+  padding: 0.6rem 1.2rem; 
+  font-weight: 600; 
+  border-radius: 20px; 
+  border: none; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #a1a1a1; /* Slightly darker gray on hover */
+  color: black; /* Keep black text */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Modal Custom Styles */
+.modal-header {
+  background-color: #034C4C; /* Same as top-bar */
+  color: #fff;
+  border-bottom: none;
+}
+
+.modal-title {
+  font-family: 'Lalezar', sans-serif;
+}
+
+.modal-body {
+  background-color: #fff;
+  color: #000;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+}
+
+.modal-body img {
+  border-radius: 5px;
+}
+
+.modal-body p {
+  margin-bottom: 0.5rem;
+}

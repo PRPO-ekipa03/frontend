@@ -57,7 +57,7 @@ export class VenuesComponent implements OnInit {
 
   // ============ PAGINATION PROPERTIES ============
   currentPage: number = 0;
-  pageSize: number = 10;
+  pageSize: number = 5;
 
   // We store the page info from the backend 
   pageResponse?: Page<ResponseVenueBasicDTO>;
@@ -185,6 +185,7 @@ export class VenuesComponent implements OnInit {
     // If user was looking at detail, switch back to the list view
     if (this.showingDetail) {
       this.showingDetail = false;
+      this.router.navigate(['/venues']);
     }
     this.hasSearched = true;
 

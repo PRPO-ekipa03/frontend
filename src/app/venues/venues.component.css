@@ -5,7 +5,7 @@
 }
 
 .navbar {
-	background-color: transparent;
+	background-color: #004349;
 	transition: background-color 0s ease, box-shadow 0s ease;
 }
 
@@ -14,7 +14,30 @@
 	max-width: 1500px;
 	margin: auto;
 }
+
+@keyframes shake {
+	0%, 100% {
+	  transform: rotate(0); /* Start and end with no rotation */
+	}
+	25% {
+	  transform: rotate(-10deg); /* Rotate slightly to the left */
+	}
+	50% {
+	  transform: rotate(10deg); /* Rotate slightly to the right */
+	}
+	75% {
+	  transform: rotate(-5deg); /* Rotate slightly to the left again */
+	}
+  }
   
+  .btn:hover {
+	animation: shake 0.7s ease-in-out; /* Apply the shake animation */
+  }
+  
+  .btn:active {
+	transform: translateY(0); /* Resets the button position when clicked */
+  }
+
 .hero-section {
 	position: relative;
 	background-color: #004349;
@@ -194,4 +217,7 @@ input.form-control.bg-transparent {
 .btn:hover i {
 	transform: scale(1.1);
 }
-  
+
+.btn-secondary {
+	background-color: #fff;
+}

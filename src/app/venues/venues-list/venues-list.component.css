@@ -12,6 +12,13 @@
     border-radius: 8px; /* example */
     position: relative; /* So child "position-absolute" items align properly */
   }
+
+  .venue-description {
+    word-break: break-word; /* Breaks long words onto the next line */
+    overflow-wrap: break-word; /* Ensures wrapping of long words */
+    white-space: normal; /* Allows text to wrap to the next line */
+    overflow: hidden; /* Prevents text from overflowing outside the container */
+  }
   
   /* Venue Image */
   .venue-image {
@@ -52,8 +59,8 @@
   }
   
   .show-pricing-btn:hover {
-    background-color: #ffffff;
-    color: #004349;
+    background-color: #9DDE8B;
+    color: black;
     transform: scale(1.05);
   }
   
