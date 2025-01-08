@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +25,8 @@ export class VenueDetailsComponent implements OnInit {
   reviews: ResponseRatingDTO[] = [];
   map!: L.Map;
   mapInitialized = false;
+  shouldShowReserveButton = false;
+  selectedDate: string | null = null;
   sampleImages = [
     'assets/images/event1.jpeg',
     'assets/images/event1.jpeg',
@@ -59,6 +61,12 @@ export class VenueDetailsComponent implements OnInit {
     }
 
     this.venueId = +id;
+
+    this.route.queryParams.subscribe(params => {
+      const date = params['selectedDate'];
+      this.shouldShowReserveButton = !!date;
+      this.selectedDate = date || null;
+    });
 
     // 1) Load the venue from the service
     this.venueService.getVenueById(this.venueId).subscribe({
@@ -236,6 +244,7 @@ export class VenueDetailsComponent implements OnInit {
       location: this.venue.location,
       description: this.venue.description,
       imagePath: this.sampleImages[0], 
+      selectedDate: this.selectedDate
     };
     localStorage.setItem('rentedVenueData', JSON.stringify(venueData));
     this.router.navigate(['/create-event']);

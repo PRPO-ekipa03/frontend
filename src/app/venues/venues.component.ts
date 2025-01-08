@@ -188,30 +188,23 @@ export class VenuesComponent implements OnInit {
       this.router.navigate(['/venues']);
     }
     this.hasSearched = true;
-
-    // Prepare filter values
-    const location = this.userInput?.trim();
-    const venueType = this.selectedVenueType;
-    const reservedDate = this.selectedDate;
-
-    // Check if all three filters are provided
-    const hasAllFilters = (location && location.length > 0) 
-                          && (venueType && venueType.length > 0)
-                          && (reservedDate && reservedDate.length > 0);
-
-    if (hasAllFilters) {
-      // Call getAvailableVenues
+  
+    // Prepare filter values (can be string or null)
+    const location = this.userInput?.trim() || null;
+    const venueType = this.selectedVenueType ?? null;
+    const reservedDate = this.selectedDate ? this.selectedDate : null;
+  
+    if (location || venueType || reservedDate) {
       this.venueService.getAvailableVenues(location, venueType, reservedDate)
         .subscribe({
           next: (data: ResponseVenueBasicDTO[]) => {
-            this.venues = data; // no pagination for "available" call
+            this.venues = data; 
           },
           error: (err) => {
             console.error('Error fetching available venues:', err);
           }
         });
     } else {
-      // Use the paginated getVenues
       this.getVenuesPage(this.currentPage, this.pageSize);
     }
   }
@@ -245,7 +238,7 @@ export class VenuesComponent implements OnInit {
   }
 
   onNavigateToDetail(venueId: number): void {
-    this.router.navigate(['/venues', venueId]);
+    this.router.navigate(['/venues', venueId], { queryParams: { selectedDate: this.selectedDate }});
     this.showingDetail = true;
   }
 }

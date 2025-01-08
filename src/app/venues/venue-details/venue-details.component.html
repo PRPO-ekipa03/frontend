@@ -110,7 +110,12 @@
 
       <!-- Example "Reserve" button or Pricing button -->
       <div class="text-center mb-4">
-        <button class="btn btn-success reserve-btn" (click)="onReserve()">Reserve</button>
+        <button 
+          class="btn btn-success reserve-btn" 
+          (click)="onReserve()"   
+          *ngIf="shouldShowReserveButton">
+          Reserve
+        </button>
       </div>
 
       <div class="guest-reviews">
@@ -132,7 +137,7 @@
           class="review-card p-3 my-2 rounded"
           *ngFor="let review of reviews"
         >
-          <p class="fw-bold mb-1">{{ review.userId }}</p>
+          <p class="fw-bold mb-1">{{ review.fullName }}</p>
           <p class="mb-2" style="font-size: 0.95rem;">
             {{ review.comment }}
           </p>

@@ -45,6 +45,7 @@
                 id="eventDate"
                 [(ngModel)]="eventDate"
                 name="eventDate"
+                [disabled]="!!selectedVenue"
               />
             </div>
   
@@ -78,15 +79,23 @@
                 placeholder="Location / address..."
               />
             </div>
-  
-            <!-- Invitation Text -->
+
+            <!-- Description Field with Tooltip -->
             <div class="form-group">
-              <label for="invitationText">Invitation (summary)</label>
+              <label for="eventDescription" class="form-label">
+                Description
+                <span 
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="right" 
+                  [title]="'The description will be visible to you and your guests whenever they view the event details. Make it engaging and informative.'">
+                  <i class="bi bi-question-circle" style="cursor: pointer;"></i>
+                </span>
+              </label>
               <textarea
-                id="invitationText"
-                [(ngModel)]="invitationText"
-                name="invitationText"
-                placeholder="Write a short invitation for your guests..."
+                id="eventDescription"
+                [(ngModel)]="eventDescription"
+                name="eventDescription"
+                placeholder="Describe your event here..."
               ></textarea>
             </div>
   
@@ -105,9 +114,28 @@
               </div>
             </div>
 
+            <!-- Invitation Text Field with Tooltip -->
+            <div class="form-group">
+              <label for="invitationText" class="form-label">
+                Invitation
+                <span 
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="right" 
+                  [title]="'The invitation message will be sent directly to your guests via email. Make it warm and inviting to encourage their attendance.'">
+                  <i class="bi bi-question-circle" style="cursor: pointer;"></i>
+                </span>
+              </label>
+              <textarea
+                id="invitationText"
+                [(ngModel)]="invitationText"
+                name="invitationText"
+                placeholder="Write a short invitation for your guests..."
+              ></textarea>
+            </div>
+
 						<!-- Proceed Button -->
 						<div class="form-group text-center mt-4">
-							<button type="button" class="proceed-btn" (click)="proceed()">Proceed</button>
+							<button type="button" class="proceed-btn" (click)="proceed()">Create!</button>
 						</div>
           </form>
         </div>
@@ -177,3 +205,71 @@
 		</div>
   </body>
   
+  <!-- Event Summary Modal -->
+<div 
+class="modal fade" 
+id="eventSummaryModal" 
+tabindex="-1" 
+aria-labelledby="eventSummaryModalLabel" 
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="eventSummaryModalLabel">Review Your Event Details</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <h6>Basic Information</h6>
+      <p><strong>Event Name:</strong> {{ eventName }}</p>
+      <p><strong>Event Type:</strong> {{ eventType }}</p>
+      <p><strong>Date:</strong> {{ eventDate | date:'mediumDate' }}</p>
+      <p><strong>Address:</strong> {{ eventAddress }}</p>
+      
+      <hr>
+
+      <h6>Description</h6>
+      <p>{{ eventDescription }}</p>
+
+      <hr>
+
+      <h6>Invitation Text</h6>
+      <p>{{ invitationText }}</p>
+
+      <hr>
+
+      <h6>Invited Emails</h6>
+      <div *ngIf="invitedEmails.length; else noInvites">
+        <ul>
+          <li *ngFor="let email of invitedEmails">{{ email }}</li>
+        </ul>
+      </div>
+      <ng-template #noInvites>
+        <p>No invites added.</p>
+      </ng-template>
+
+      <hr>
+
+      <h6>Selected Venue</h6>
+      <div *ngIf="selectedVenue; else noVenue">
+        <p><strong>Name:</strong> {{ selectedVenue.name }}</p>
+        <p><strong>Location:</strong> {{ selectedVenue.location }}</p>
+        <!-- Add more venue details here as needed -->
+      </div>
+      <ng-template #noVenue>
+        <p>No venue selected.</p>
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        (click)="confirmEvent()" 
+        data-bs-dismiss="modal">
+          {{ selectedVenue ? 'Proceed to payment' : 'Confirm and Create Event' }}
+      </button>
+    </div>
+  </div>
+</div>
+</div>

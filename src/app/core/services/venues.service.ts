@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service'; // Unified HTTP service
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Venue } from '../../shared/models/venue'; // Import the interface
 import { ResponseVenueBasicDTO } from '../../shared/models/venueBasicResponse'; // Import the interface
@@ -33,10 +34,23 @@ export class VenuesService {
    * @param reservedDate The date to exclude already reserved venues.
    * @returns An Observable containing the list of basic venue data.
    */
-  getAvailableVenues(location: string, venueType: string, reservedDate: string): Observable<ResponseVenueBasicDTO[]> {
-    return this.httpService.get<ResponseVenueBasicDTO[]>(
-      `venues/available?location=${location}&venueType=${venueType}&reservedDate=${reservedDate}`
-    );
+  getAvailableVenues(
+    location: string | null, 
+    venueType: string | null, 
+    reservedDate: string | null
+  ): Observable<ResponseVenueBasicDTO[]> {
+    let params = new HttpParams();
+    if (location) {
+      params = params.set('location', location);
+    }
+    if (venueType) {
+      params = params.set('venueType', venueType);
+    }
+    if (reservedDate) {
+      params = params.set('reservedDate', reservedDate);
+    }
+  
+    return this.httpService.get<ResponseVenueBasicDTO[]>('venues/available', { params });
   }
 
   /**

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EventsService } from '../core/services/events.service';
+import { EventCreateDTO, EventStatus } from '../shared/models/createEvent';        // Define or import the interface
+import { EventResponseDTO } from '../shared/models/eventResponse';      // Define or import the interface
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-create-event',
@@ -14,6 +18,7 @@ export class CreateEventComponent implements OnInit {
   eventType = '';
   eventDate: Date | null = null;
   eventAddress = '';
+  eventDescription = '';
   invitationText = '';
   
   inviteInput = '';
@@ -22,7 +27,11 @@ export class CreateEventComponent implements OnInit {
   showPaymentModal = false;
   showReservationModal = false;
   
-  selectedVenue: { id: string; name: string; location: string; imagePath: string; venuePrice: number } | null = null;
+  selectedVenue: { id: string; name: string; location: string; imagePath: string; venuePrice: number; selectedDate: string } | null = null;
+
+  constructor(
+      private readonly eventService: EventsService,
+    ) {}
 
   ngOnInit() {
     // Retrieve event data from localStorage if it exists
@@ -41,6 +50,9 @@ export class CreateEventComponent implements OnInit {
     const savedVenueData = localStorage.getItem('rentedVenueData');
     if (savedVenueData) {
       this.selectedVenue = JSON.parse(savedVenueData);
+      if (this.selectedVenue?.selectedDate) {
+        this.eventDate = new Date(this.selectedVenue.selectedDate);
+      }
     }
 
     if (this.selectedVenue) {
@@ -69,6 +81,7 @@ export class CreateEventComponent implements OnInit {
       address: this.eventAddress,
       invitation: this.invitationText,
       invitedEmails: this.invitedEmails
+
     };
     localStorage.setItem('createEventData', JSON.stringify(eventData));
 
@@ -83,13 +96,15 @@ export class CreateEventComponent implements OnInit {
 
   proceed(): void {
     // If a venue is selected, show Payment Modal
+    this.openSummaryModal()
+    /*
     if (this.selectedVenue) {
       this.showPaymentModal = true;
     } 
     // If venue is not selected, show Reservation Successful Modal
     else {
       this.showReservationModal = true;
-    }
+    }*/
   }
 
   payWithPayPal(): void {
@@ -111,4 +126,50 @@ export class CreateEventComponent implements OnInit {
   closeReservationModal(): void {
     this.showReservationModal = false;
   }
-}
+
+  openSummaryModal(): void {
+    const modalElement = document.getElementById('eventSummaryModal');
+    if (modalElement === null) {
+      console.error('Modal element not found');
+      return;
+    }
+    const summaryModal = new bootstrap.Modal(modalElement);
+    summaryModal.show();
+  }
+  
+  confirmEvent(): void {
+    const eventDTO: EventCreateDTO = {
+      name: this.eventName,
+      description: this.eventDescription,
+      location: this.eventAddress,
+      eventDate: this.eventDate ? new Date(this.eventDate).toISOString() : new Date().toISOString(),
+      venueId: this.selectedVenue ? Number(this.selectedVenue.id) : 0,
+      status: EventStatus.UPCOMING,
+      guestIds: []  // Adjust this if you need to map invitedEmails or other logic
+    };
+
+    if (this.selectedVenue) {
+      // If venue selected, call createEventWithReservation
+      this.eventService.createEventWithReservation(eventDTO).subscribe(
+        (response: EventResponseDTO) => {
+          console.log('Event with reservation created:', response);
+          this.showPaymentModal = true;
+        },
+        error => {
+          console.error('Error creating event with reservation:', error);
+        }
+      );
+    } else {
+      // If no venue, call createEvent
+      this.eventService.createEvent(eventDTO).subscribe(
+        (response: EventResponseDTO) => {
+          console.log('Event created:', response);
+          this.showReservationModal = true;
+        },
+        error => {
+          console.error('Error creating event:', error);
+        }
+      );
+    }
+  }
+} 

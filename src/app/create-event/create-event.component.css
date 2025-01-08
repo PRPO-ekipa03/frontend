@@ -19,7 +19,7 @@
   html {
     font-family: Arial, sans-serif;
     background-color: #ECE2D0 !important; /* A gentle, neutral background */
-    padding-bottom: 1000px !important; /* Add some padding to ensure content doesn't overflow */
+    padding-bottom: 1500px !important; /* Add some padding to ensure content doesn't overflow */
 
   }
   
@@ -391,3 +391,87 @@
     color: #333; /* Standard label color for consistency */
     margin-bottom: 8px; /* Adds spacing below the label */
   }
+
+  /* Event Summary Modal Styles */
+#eventSummaryModal .modal-dialog {
+  max-width: 800px; /* Adjust width as needed */
+}
+
+#eventSummaryModal .modal-content {
+  left: 75%; /* Moves the element's left edge to the center of the viewport */
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#eventSummaryModal .modal-header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  background-color: #034C4C; /* Matching header color */
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#eventSummaryModal .modal-title {
+  font-family: 'Lalezar', cursive;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+#eventSummaryModal .modal-body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  color: #333;
+}
+
+#eventSummaryModal .modal-body h6 {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #034C4C;
+}
+
+#eventSummaryModal .modal-body p {
+  margin: 10px 0;
+}
+
+#eventSummaryModal .modal-footer {
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#eventSummaryModal .modal-footer .btn-secondary,
+#eventSummaryModal .modal-footer .btn-primary {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#eventSummaryModal .modal-footer .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  margin-right: 10px;
+}
+
+#eventSummaryModal .modal-footer .btn-primary {
+  background-color: #034C4C;
+  color: #fff;
+  border: none;
+}
+
+/* Hover states for buttons */
+#eventSummaryModal .modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+#eventSummaryModal .modal-footer .btn-primary:hover {
+  background-color: #026666;
+}
+
+
