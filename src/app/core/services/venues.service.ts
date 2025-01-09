@@ -7,6 +7,7 @@ import { ResponseVenueBasicDTO } from '../../shared/models/venueBasicResponse'; 
 import { CreateVenueDTO } from '../../shared/models/createVenue';
 import { ResponseRatingDTO } from '../../shared/models/ratingResponse';
 import { CreateRatingDTO } from '../../shared/models/createRating';
+import { ResponseReservationDTO } from '../../shared/models/reservationResponse'; // Adjust path as needed
 
 import { Page } from '../../shared/models/page'; // Import the Page interface
 
@@ -100,5 +101,22 @@ export class VenuesService {
    */
   addRating(venueId: number, ratingDTO: CreateRatingDTO): Observable<ResponseRatingDTO> {
     return this.httpService.post<ResponseRatingDTO>(`venues/${venueId}/ratings`, ratingDTO);
+  }
+
+  /**
+   * Finds venues by owner ID.
+   * @param ownerId The ID of the owner whose venues are to be retrieved.
+   * @returns An Observable containing a list of ResponseVenueDTO.
+   */
+  getVenuesByOwnerId(): Observable<ResponseVenueBasicDTO[]> {
+    return this.httpService.get<ResponseVenueBasicDTO[]>(`venues/owner`);
+  }
+
+  /**
+   * Fetches reservations for the current user.
+   * @returns An Observable containing a list of ResponseReservationDTO for the user.
+   */
+  getReservationsByUserId(): Observable<ResponseReservationDTO[]> {
+    return this.httpService.get<ResponseReservationDTO[]>(`reservations/user`);
   }
 }

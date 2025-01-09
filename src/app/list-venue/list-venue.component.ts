@@ -1,17 +1,15 @@
-// list-venue.component.ts
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VenueType, VenueStatus, Venue } from '../shared/models/venue'; // Adjust the import path as necessary
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CreateVenueDTO } from '../shared/models/createVenue'; // Adjust the import path as necessary
 import { VenuesService } from '../core/services/venues.service'; // Adjust the import path as necessary
 
 @Component({
   selector: 'app-list-venue',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './list-venue.component.html',
   styleUrls: ['./list-venue.component.css'],
 })

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service'; // Unified HTTP service
 import { RegisterRequest } from '../../shared/models/registerRequest';
-import { Observable, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,15 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('auth_token');
+  }
+
+  validateToken(token: string): Observable<boolean> {
+    return this.httpService.post<string>('auth/validate-token', token).pipe(
+      // If the request succeeds, map the response to true
+      map(response => true),
+      // If there's an error (e.g., invalid token), catch it and return false
+      catchError(error => of(false))
+    );
   }
 
 }

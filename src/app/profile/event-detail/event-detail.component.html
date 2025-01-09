@@ -1,0 +1,11 @@
+<div class="event-detail">
+    <h2 class="event-title">{{ event?.name }}</h2>
+    <div class="event-info">
+      <p><strong>Venue:</strong> {{ event?.venueName }}</p>
+      <p><strong>Description:</strong> {{ event?.description || 'N/A' }}</p>
+      <p><strong>Date:</strong> {{ event?.eventDate | date:'medium' }}</p>
+      <p><strong>Location:</strong> {{ event?.location }}</p>
+      <p><strong>Status:</strong> {{ event?.status }}</p>
+    </div>
+  </div>
+  

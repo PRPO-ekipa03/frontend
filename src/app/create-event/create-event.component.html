@@ -1,10 +1,14 @@
 <body>
-    <header class="top-bar">
-      <div class="logo">Event4You</div>
-      <div class="user-icon">
-        <i class="fa fa-user"></i>
-      </div>
-    </header>
+  <header class="top-bar">
+    <a routerLink="/home" class="logo">Event4You</a> <!-- Made logo a clickable link -->
+    <div class="menu ms-3">
+      <a class="menu-item" routerLink="/list-venue">List a Venue</a>
+      <a class="menu-item" routerLink="/venues">Venues</a>
+    </div>
+    <a routerLink="/profile" class="icon-link ms-auto">
+      <i class="fa fa-user"></i>
+    </a>
+  </header>
   
     <div class="main-container">
       <!-- First container: Event creation form -->

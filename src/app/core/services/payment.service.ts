@@ -3,6 +3,7 @@ import { HttpService } from './http.service';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PaymentRequestDTO } from '../../shared/models/createPayment'; // Adjust import path as needed
+import { PayResponseDTO } from '../../shared/models/paymentResponse'; // Import the PayResponseDTO interface
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,14 @@ export class PaymentService {
    */
   getOrderDetails(orderId: string): Observable<any> {
     return this.httpService.get<any>(`payments/details/${orderId}`);
+  }
+
+  /**
+   * Retrieves payments for a specific user by their user ID.
+   * @param userId The user ID.
+   * @returns An Observable that emits a list of PayResponseDTO objects.
+   */
+  getPaymentsByUserId(): Observable<PayResponseDTO[]> {
+    return this.httpService.get<PayResponseDTO[]>('payments/user');
   }
 }

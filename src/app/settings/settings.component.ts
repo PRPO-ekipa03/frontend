@@ -2,13 +2,15 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { RouterModule } from '@angular/router';                     // Import Router
 
 @Component({
   selector: 'app-settings',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']

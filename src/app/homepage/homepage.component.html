@@ -1,71 +1,68 @@
 <!-- Top Navigation -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent py-3">
 	<div class="container d-flex justify-content-between align-items-center">
-			<!-- Navbar Brand -->
-			<a class="navbar-brand fs-4" href="#">Event4You</a>
-			<!-- Navbar Toggler for Mobile View -->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-			</button>
-			<!-- Navbar Items -->
-			<div class="collapse navbar-collapse justify-content-end" id="mainNav">
-					<ul class="navbar-nav">
-							<!-- Login Button -->
-							<li class="nav-item">
-								<a class="nav-link btn btn-login rounded-pill" href="#">Login</a>
-							</li>
-
-							<li class="nav-item ms-3">
-								<a class="nav-link btn btn-success rounded-pill" href="/register">Sign up</a>
-							</li>
-					</ul>
-			</div>
+	  <!-- Navbar Brand -->
+	  <a class="navbar-brand fs-4">Event4You</a>
+	  <!-- Navbar Toggler for Mobile View -->
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <!-- Navbar Items -->
+	  <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+		<ul class="navbar-nav">
+		  <!-- Login Button -->
+		  <li class="nav-item">
+			<a class="nav-link btn btn-login rounded-pill" routerLink="/login">Login</a>
+		  </li>
+		  <li class="nav-item ms-3">
+			<a class="nav-link btn btn-success rounded-pill" routerLink="/register">Sign up</a>
+		  </li>
+		</ul>
+	  </div>
 	</div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero d-flex flex-column justify-content-start align-items-center text-center text-light">
-
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero d-flex flex-column justify-content-start align-items-center text-center text-light">
 	<div class="ellipse-bg"></div>
-
 	<div class="hero-content">
-			<h1 class="hero-title mb-3">Your Private Event<span class="comma">,</span> Perfectly Planned<span class="comma">.</span></h1>
-			<p class="hero-subtitle lead">
-					Create private events tailored for you and your invitees. Send personalized invitations, book a venue, and keep your event exclusive—effortlessly.
-			</p>
-			<!-- Green Button -->
-			<a href="#" class="btn btn-success btn-lg mt-3 px-4">Create an event now</a>
+	  <h1 class="hero-title mb-3">Your Private Event<span class="comma">,</span> Perfectly Planned<span class="comma">.</span></h1>
+	  <p class="hero-subtitle lead">
+		Create private events tailored for you and your invitees. Send personalized invitations, book a venue, and keep your event exclusive—effortlessly.
+	  </p>
+	  <!-- Green Button -->
+	  <a routerLink="/create-event" class="btn btn-success btn-lg mt-3 px-4">Create an event now</a>
 	</div>
-</section>
-
-<!-- Image Grid -->
-<section class="venue-images container-fluid py-5">
+  </section>
+  
+  <!-- Image Grid -->
+  <section class="venue-images container-fluid py-5">
 	<div class="row g-4">
-		<!-- First row of 3 images -->
-		<div class="col-md-4">
-			<img src="assets/images/event1.jpeg" alt="Decorated banquet hall" class="img-fluid rounded shadow">
-		</div>
-		<div class="col-md-4">
-			<img src="assets/images/event2.jpeg" alt="Elegant wedding venue" class="img-fluid rounded shadow">
-		</div>
-		<div class="col-md-4">
-			<img src="assets/images/event3.jpeg" alt="Modern lounge area" class="img-fluid rounded shadow">
-		</div>
+	  <!-- First row of 3 images -->
+	  <div class="col-md-4">
+		<img src="assets/images/event1.jpeg" alt="Decorated banquet hall" class="img-fluid rounded shadow">
+	  </div>
+	  <div class="col-md-4">
+		<img src="assets/images/event2.jpeg" alt="Elegant wedding venue" class="img-fluid rounded shadow">
+	  </div>
+	  <div class="col-md-4">
+		<img src="assets/images/event3.jpeg" alt="Modern lounge area" class="img-fluid rounded shadow">
+	  </div>
 	</div>
 	<!-- Second Row: 2 Images Positioned Differently -->
 	<div class="row g-4 mt-4">
-		<!-- First Image with Offset -->
-		<div class="col-md-4 offset-md-1">
-				<img src="assets/images/event4.jpeg" alt="Outdoor event venue" class="img-fluid rounded shadow">
-		</div>
-		<!-- Second Image with Offset -->
-		<div class="col-md-4 offset-md-1">
-				<img src="assets/images/event5.jpeg" alt="Concert stage" class="img-fluid rounded shadow">
-		</div>
-</div>
-</section>
-
-<section class="venue-lending py-5">
+	  <!-- First Image with Offset -->
+	  <div class="col-md-4 offset-md-1">
+		<img src="assets/images/event4.jpeg" alt="Outdoor event venue" class="img-fluid rounded shadow">
+	  </div>
+	  <!-- Second Image with Offset -->
+	  <div class="col-md-4 offset-md-1">
+		<img src="assets/images/event5.jpeg" alt="Concert stage" class="img-fluid rounded shadow">
+	  </div>
+	</div>
+  </section>
+  
+  <section class="venue-lending py-5">
 	<div class="container">
 	  <div class="row gx-0 align-items-center">
 		<!-- Left Column: Text -->
@@ -79,7 +76,7 @@
 			<li class="mb-2">• Secure payment handling and transparent pricing.</li>
 			<li class="mb-2">• Connect with event organizers who value your unique space.</li>
 		  </ul>
-		  <a href="#" class="btn-stay-green btn rounded-pill">List Your Venue</a>
+		  <a routerLink="/list-venue" class="btn-stay-green btn rounded-pill">List Your Venue</a>
 		</div>
 		<!-- Right Column: Image -->
 		<div class="col-md-6 text-center text-md-end">
@@ -92,21 +89,22 @@
 	  </div>
 	</div>
   </section>
-
-<!-- Info Section -->
-<section class="info-section py-5">
+  
+  <!-- Info Section -->
+  <section class="info-section py-5">
 	<div class="container text-center text-md-start">
-		<h2 class="fw-bold mb-4">Plan, Invite, Book. All in One Place.</h2>
-		<p class="mb-4 fs-5">
-			Take the stress out of event planning. From guest lists to venues, we’ve got you covered.
-		</p>
-		<ul class="list-unstyled fs-5 mb-4">
-			<li class="mb-2">• Create private events and control who attends.</li>
-			<li class="mb-2">• Send invitations and track RSVPs effortlessly.</li>
-			<li class="mb-2">• Book venues perfect for any event.</li>
-			<li class="mb-2">• Manage your events and guests all in one place.</li>
-		</ul>
-		<a href="#" class="btn-stay-green btn rounded-pill">Get started for free</a>
-
+	  <h2 class="fw-bold mb-4">Plan, Invite, Book. All in One Place.</h2>
+	  <p class="mb-4 fs-5">
+		Take the stress out of event planning. From guest lists to venues, we’ve got you covered.
+	  </p>
+	  <ul class="list-unstyled fs-5 mb-4">
+		<li class="mb-2">• Create private events and control who attends.</li>
+		<li class="mb-2">• Send invitations and track RSVPs effortlessly.</li>
+		<li class="mb-2">• Book venues perfect for any event.</li>
+		<li class="mb-2">• Manage your events and guests all in one place.</li>
+	  </ul>
+	  <!-- "Get started for free" button without a specific URL -->
+	  <a href="#" class="btn-stay-green btn rounded-pill" routerLink="/login">Get started for free</a>
 	</div>
-</section>
+  </section>
+  

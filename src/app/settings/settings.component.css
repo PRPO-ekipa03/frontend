@@ -19,6 +19,28 @@
     font-size: 1.3rem;
   }
 
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease;
+  }
+
+  .icon-link {
+	font-size: 1.3rem;
+	color: white;
+	text-decoration: none;
+	padding: 10px; /* Increase clickable area */
+	margin-left: 10px; /* Space between icons */
+	transition: color 0.3s ease;
+	cursor: pointer;
+  }
+  
+  .icon-link:hover {
+	color: #ffcc00; /* Highlight color on hover */
+  }
+
 
 /* Ensure the app root takes up the full height */
 :host {

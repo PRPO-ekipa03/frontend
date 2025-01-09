@@ -7,11 +7,12 @@ import { EventResponseDTO } from '../shared/models/eventResponse';      // Defin
 import { PaymentService } from '../core/services/payment.service'; // Adjust the path as necessary
 import { PaymentRequestDTO } from '../shared/models/createPayment'; // Import the PaymentRequestDTO interface
 import * as bootstrap from 'bootstrap';
+import { RouterModule } from '@angular/router';  // Import RouterModule
 
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })

@@ -6,11 +6,43 @@
   font-family: sans-serif;   /* Example global font */
 }
 
+.menu {
+  display: flex;
+  gap: 20px; /* Space between menu items */
+}
+
+.menu-item {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  cursor: pointer; /* Pointer cursor to indicate it's clickable */
+}
+
+.menu-item:hover {
+  background-color: transparent;
+  color: #ffcc00; /* Highlight text color on hover */
+}
+
+.icon-link {
+  font-size: 1.3rem;
+  color: white;
+  text-decoration: none;
+  padding: 10px; /* Increase clickable area */
+  margin-left: 10px; /* Space between icons */
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.icon-link:hover {
+  color: #ffcc00; /* Highlight color on hover */
+}
+
 /* Top bar */
 .top-bar {
   width: 100%;
   background-color: #034C4C; /* Teal-ish color */
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +52,9 @@
 
 .top-bar .logo {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: none;
 }
 
 .top-bar .user-icon {
