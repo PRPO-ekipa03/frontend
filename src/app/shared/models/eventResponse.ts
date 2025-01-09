@@ -8,6 +8,7 @@ export interface EventResponseDTO {
     location: string;
     eventDate: string;  // ISO string representation of Timestamp
     userId: number;
+    reservationId?: number;
     userName?: string;
     venueId: number;
     venueName?: string;

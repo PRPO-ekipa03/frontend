@@ -244,7 +244,8 @@ export class VenueDetailsComponent implements OnInit {
       location: this.venue.location,
       description: this.venue.description,
       imagePath: this.sampleImages[0], 
-      selectedDate: this.selectedDate
+      selectedDate: this.selectedDate,
+      venuePrice: this.venue.pricePerDay
     };
     localStorage.setItem('rentedVenueData', JSON.stringify(venueData));
     this.router.navigate(['/create-event']);

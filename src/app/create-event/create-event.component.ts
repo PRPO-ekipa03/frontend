@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { EventsService } from '../core/services/events.service';
 import { EventCreateDTO, EventStatus } from '../shared/models/createEvent';        // Define or import the interface
 import { EventResponseDTO } from '../shared/models/eventResponse';      // Define or import the interface
+import { PaymentService } from '../core/services/payment.service'; // Adjust the path as necessary
+import { PaymentRequestDTO } from '../shared/models/createPayment'; // Import the PaymentRequestDTO interface
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -20,7 +22,7 @@ export class CreateEventComponent implements OnInit {
   eventAddress = '';
   eventDescription = '';
   invitationText = '';
-  
+  reservationId: number | null = null;
   inviteInput = '';
   invitedEmails: string[] = [];
 
@@ -31,6 +33,8 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
       private readonly eventService: EventsService,
+      private readonly paymentService: PaymentService
+
     ) {}
 
   ngOnInit() {
@@ -51,13 +55,11 @@ export class CreateEventComponent implements OnInit {
     if (savedVenueData) {
       this.selectedVenue = JSON.parse(savedVenueData);
       if (this.selectedVenue?.selectedDate) {
+        console.log(this.selectedVenue.selectedDate);
         this.eventDate = new Date(this.selectedVenue.selectedDate);
       }
     }
 
-    if (this.selectedVenue) {
-      this.selectedVenue.venuePrice = 18.99
-    }
   }
 
   addEmail() {
@@ -97,26 +99,36 @@ export class CreateEventComponent implements OnInit {
   proceed(): void {
     // If a venue is selected, show Payment Modal
     this.openSummaryModal()
-    /*
-    if (this.selectedVenue) {
-      this.showPaymentModal = true;
-    } 
-    // If venue is not selected, show Reservation Successful Modal
-    else {
-      this.showReservationModal = true;
-    }*/
+    
   }
 
   payWithPayPal(): void {
-    // Assume you have a reservationId for the venue, or you pass needed info in the request
-    const reservationId = 123; // example
-    const paymentRequestDTO = {
-      // your PaymentRequestDTO shape:
-      amount: this.selectedVenue?.venuePrice ?? 17.99,
-      currency: 'USD',
-      // ...any other needed properties
+    // Use the actual reservationId obtained earlier (e.g., from event creation)
+    if (!this.reservationId || !this.selectedVenue?.venuePrice) {
+       console.error("CR1TIKAL")
+       return;
+    } 
+    const reservationId = this.reservationId; // fallback for demonstration
+    
+    const paymentRequestDTO: PaymentRequestDTO = {
+      amount: this.selectedVenue?.venuePrice ,
+      currency: 'EUR',
+      description: 'Payment for event reservation'
     };
-
+  
+    this.paymentService.createOrder(paymentRequestDTO, reservationId).subscribe(
+      approvalUrl => {
+        if (approvalUrl) {
+          // Redirect the user to the PayPal approval URL
+          window.location.href = approvalUrl;
+        } else {
+          console.error('Failed to obtain approval URL.');
+        }
+      },
+      error => {
+        console.error('Error creating PayPal order:', error);
+      }
+    );
   }
 
   closePaymentModal(): void {
@@ -152,7 +164,12 @@ export class CreateEventComponent implements OnInit {
       // If venue selected, call createEventWithReservation
       this.eventService.createEventWithReservation(eventDTO).subscribe(
         (response: EventResponseDTO) => {
+          if (!response.reservationId) {
+            console.error("CR1TIKAL")
+            return;
+          }
           console.log('Event with reservation created:', response);
+          this.reservationId = response.reservationId; 
           this.showPaymentModal = true;
         },
         error => {
