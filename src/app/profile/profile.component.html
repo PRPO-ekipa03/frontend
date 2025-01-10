@@ -1,0 +1,146 @@
+<header class="top-bar">
+  <a routerLink="/home" class="logo">Event4You</a> <!-- Made logo a clickable link -->
+  <div class="menu ms-3">
+    <a class="menu-item" routerLink="/create-event">Create an Event</a>
+    <a class="menu-item" routerLink="/list-venue">List a Venue</a>
+    <a class="menu-item" routerLink="/venues">Venues</a>
+  </div>
+  <a routerLink="/settings" class="icon-link ms-auto">
+    <i class="fa fa-cog"></i>
+  </a>
+</header>
+  
+  <div class="container">
+    <div class="row">
+      <!-- Left Navigation Column -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <nav class="nav flex-column nav-pills" aria-label="Profile Navigation">
+              <a
+                class="nav-item nav-link"
+                [class.active]="activeTab === 'events'"
+                (click)="setActiveTab('events')"
+              >
+                <i class="fa fa-calendar"></i> Events
+              </a>
+              <a
+                class="nav-item nav-link"
+                [class.active]="activeTab === 'venues'"
+                (click)="setActiveTab('venues')"
+              >
+                <i class="fa fa-building"></i> Listed Venues
+              </a>
+              <a
+                class="nav-item nav-link"
+                [class.active]="activeTab === 'reservations'"
+                (click)="setActiveTab('reservations')"
+              >
+                <i class="fa fa-ticket"></i> Reservations
+              </a>
+              <a
+                class="nav-item nav-link"
+                [class.active]="activeTab === 'transactions'"
+                (click)="setActiveTab('transactions')"
+              >
+                <i class="fa fa-money-bill"></i> Transactions
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Dynamic Content Column -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <ng-container [ngSwitch]="activeTab">
+              <!-- Events Tab -->
+              <div *ngSwitchCase="'events'">
+                <h4>Your Events</h4>
+                <div *ngIf="events && events.length; else noEvents">
+                  <div 
+                       *ngFor="let event of events" 
+                       class="event-list-item card mb-2" 
+                       style="cursor: pointer;" 
+                       (click)="openEventModal(event)">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ event.name }}</h5>
+                      <p class="card-text">
+                        <strong>Date:</strong> {{ event.eventDate | date:'shortDate' }}<br>
+                        <strong>Location:</strong> {{ event.location }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #noEvents>
+                  <p>No events found.</p>
+                </ng-template>
+              </div>
+  
+              <!-- Venues Tab -->
+              <div *ngSwitchCase="'venues'">
+                <h4>Your Listed Venues</h4>
+                <div *ngIf="venues && venues.length; else noVenues">
+                  <div 
+                       *ngFor="let venue of venues" 
+                       class="venue-list-item card mb-2" 
+                       style="cursor: pointer;" 
+                       (click)="redirectToVenue(venue.id)">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ venue.name }}</h5>
+                      <p class="card-text">
+                        <strong>Location:</strong> {{ venue.location }}<br>
+                        <strong>Average Rating:</strong> {{ venue.averageRating }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #noVenues>
+                  <p>No venues found.</p>
+                </ng-template>
+              </div>
+
+              <!-- Reservations Tab -->
+            <div *ngSwitchCase="'reservations'">
+                <h4>Your Reservations</h4>
+                <div *ngIf="reservations && reservations.length; else noReservations">
+                    <div *ngFor="let reservation of reservations" class="reservation-item card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Reservation #{{ reservation.id }}</h5>
+                        <p class="card-text">
+                        <strong>Venue ID:</strong> {{ reservation.venueId }}<br>
+                        <strong>Event ID:</strong> {{ reservation.eventId }}<br>
+                        <strong>Date:</strong> {{ reservation.reservedDate | date:'short' }}<br>
+                        <strong>Status:</strong> {{ reservation.status }}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <ng-template #noReservations>
+                    <p>No reservations found.</p>
+                </ng-template>
+            </div>
+  
+              <!-- Transactions Tab -->
+              <div *ngSwitchCase="'transactions'">
+                <h3>Payments</h3>
+                <ul>
+                    <li *ngFor="let payment of payments">
+                    {{ payment.paypalOrderId }} - {{ payment.amount }} {{ payment.currency }} ({{ payment.status }})
+                    </li>
+                </ul>
+              </div>
+  
+              <!-- Default/Fallback -->
+              <div *ngSwitchDefault>
+                <h4>Welcome to your profile</h4>
+                <p>Select an option from the left to view more details.</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,265 @@
+/* 1) Overall container styling */
+:host {
+  display: block;
+  background-color: #ECE2D0; /* Light beige background */
+  min-height: 100vh;
+  font-family: sans-serif;   /* Example global font */
+}
+
+.menu {
+  display: flex;
+  gap: 20px; /* Space between menu items */
+}
+
+.menu-item {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  cursor: pointer; /* Pointer cursor to indicate it's clickable */
+}
+
+.menu-item:hover {
+  background-color: transparent;
+  color: #ffcc00; /* Highlight text color on hover */
+}
+
+.icon-link {
+  font-size: 1.3rem;
+  color: white;
+  text-decoration: none;
+  padding: 10px; /* Increase clickable area */
+  margin-left: 10px; /* Space between icons */
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.icon-link:hover {
+  color: #ffcc00; /* Highlight color on hover */
+}
+
+/* Top bar */
+.top-bar {
+  width: 100%;
+  background-color: #034C4C; /* Teal-ish color */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.top-bar .logo {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: none;
+}
+
+.top-bar .user-icon {
+  font-size: 1.3rem;
+}
+
+/* Title area */
+.steps-title {
+  padding-top: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.steps-title h1 {
+  font-size: 2.5rem;
+  color: #000;
+  font-family: 'Lalezar', sans-serif;
+}
+
+/* 2) Steps container */
+.steps-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+
+/* 3) Single step container */
+.step-item {
+  background: #fff;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  position: relative;
+  cursor: pointer;
+
+  /* Outline is the same whether expanded or not: */
+  border: 0.5px solid #000; 
+  transition: border-color 0.3s ease;
+}
+
+/* Keep the exact same style for expanded: */
+.step-item.expanded {
+  /* No change in border thickness or radius */
+  border: 0.5px solid #000; 
+  border-radius: 30px; 
+}
+
+/* Step header row: circle + label + arrow top-right */
+.step-header {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Circle (radio-like) on the left. Completed => green fill */
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.step-circle.completed {
+  border: 2px solid #000;
+  background-color: #9DDE8B;
+}
+
+/* Label text */
+.step-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Arrow icon, absolute top-right, flips on open */
+.step-item i {
+  position: absolute;
+  top: 12px;
+  right: 1rem;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.step-item i.open {
+  transform: rotate(180deg);
+}
+
+/* 4) Expand/collapse animation with max-height trick */
+.expanded-content {
+  display: flex;          /* Use flexbox for layout */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Push button to the bottom */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.9s ease; /* Smooth transition */
+}
+
+/* Form styling inside expanded area */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 0rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none; /* Remove the default blue outline */
+  box-shadow: none !important; /* Remove the shadow applied by Bootstrap */
+  border-color: #ccc; /* Optional: Reset border color */
+}
+
+/* Button inside the expanded form (green) */
+.btn-success {
+  background-color: #9DDE8B;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.btn-success:hover {
+  background-color: #86cc72;
+  transform: scale(1.02);
+}
+
+/* 5) Bottom buttons (Back, I'm done) */
+/* Bottom buttons container */
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 600px; /* Adjust this value to increase spacing */
+
+  max-width: 1200px; /* Adjust as needed for your layout */
+  margin-left: 435px;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+/* Done button */
+.done-btn {
+  background-color: #9DDE8B;
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.done-btn:hover {
+  background-color: #86cc72;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* Back button */
+.back-btn {
+  background-color: #b3b3b3; /* Light gray background */
+  color: #000; /* Black text */
+  padding: 0.6rem 1.2rem; 
+  font-weight: 600; 
+  border-radius: 20px; 
+  border: none; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #a1a1a1; /* Slightly darker gray on hover */
+  color: black; /* Keep black text */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Modal Custom Styles */
+.modal-header {
+  background-color: #034C4C; /* Same as top-bar */
+  color: #fff;
+  border-bottom: none;
+}
+
+.modal-title {
+  font-family: 'Lalezar', sans-serif;
+}
+
+.modal-body {
+  background-color: #fff;
+  color: #000;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+}
+
+.modal-body img {
+  border-radius: 5px;
+}
+
+.modal-body p {
+  margin-bottom: 0.5rem;
+}

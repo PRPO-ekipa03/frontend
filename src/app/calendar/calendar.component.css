@@ -1,0 +1,97 @@
+.calendar-container {
+  position: relative;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.calendar {
+  background: #eee4f0;
+  border-radius: none;
+  border-radius: 0;
+  padding: 10px;
+  width: 403px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  text-transform: lowercase; /* Matches the style in the provided image */
+}
+
+.calendar-header h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.nav-arrow {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-arrow:hover {
+  color: #004349; /* Slight color change on hover */
+}
+
+.nav-arrow:first-child {
+  left: 0; /* Left arrow */
+}
+
+.nav-arrow:last-child {
+  right: 0; /* Right arrow */
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #666;
+  text-transform: lowercase; /* as per provided image style */
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 2px;
+}
+
+.calendar-date {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  line-height: 40px;
+}
+
+.calendar-date:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+.calendar-date.empty {
+  cursor: default;
+  color: #bbb;
+}
+
+.calendar-date.empty:hover {
+  box-shadow: none;
+  background: none;
+}

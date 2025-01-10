@@ -1,0 +1,277 @@
+/* Navbar Initial State */
+.navbar-brand {
+	font-family: 'Dela Gothic One', sans-serif;
+	font-size: 1.5rem; /* Adjust size as needed */
+	transition: color 0.5s ease;
+}
+
+.navbar {
+	background-color: transparent; /* Transparent initially */
+	transition: background-color 0s ease, box-shadow 0s ease; /* Smooth transition */
+}
+
+/* Navbar Scrolled State */
+.navbar.scrolled {
+	background-color: #ffffff !important; /* Solid white background */
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+	border-radius: 40px; /* Rounded navbar corners */
+	margin: 10px auto; /* Adjust margin for spacing */
+	max-width: 1550px;
+	transition: background-color 0.9s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+/* Navbar Brand (adjust size when scrolled) */
+.navbar.scrolled .navbar-brand {
+	font-size: 1.3rem; /* Slightly smaller brand text */
+	color: #004349; /* Adjust color for visibility */
+}
+
+/* Navbar Links */
+.navbar.scrolled .nav-link {
+	color: #333; /* Dark text color */
+}
+
+/* Hover Effects for Buttons When Navbar is Scrolled */
+.navbar.scrolled .btn-success:hover {
+    background-color: #004349; /* Dark background on hover */
+    color: white; /* Dark green text */
+}
+
+.navbar.scrolled .btn-login:hover {
+    background-color: #004349; /* Dark background on hover */
+    color: white; /* Dark green text */
+}
+
+/* Center the navbar content within a smaller container */
+.navbar .container {
+	max-width: 1500px; /* Adjust as needed */
+	margin: auto; /* Center the container */
+}
+
+/* Base Button Styling */
+.nav-link.btn {
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border: none;
+    padding: 0.70rem 1.5rem !important; /* Consistent padding */
+    border-radius: 30px; /* Rounded corners */
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease; /* Smooth transitions */
+    transform: scale(1); /* Ensure default scale */
+}
+
+/* Shared Hover Effect */
+.nav-link.btn:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #004349; /* Text color changes for contrast */
+    transform: scale(1.05); /* Slightly scale up the button */
+}
+
+/* Sign Up Button */
+.btn-success {
+    background-color: #9DDE8B; /* Light green background */
+    color: #004349; /* Text color */
+}
+
+/* Login Button */
+.btn-login {
+    background-color: transparent; /* Transparent background */
+    color: #ffffff; /* White text initially */
+}
+
+/* Hover Overrides */
+.btn-login:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #004349; /* Dark green text on hover */
+}
+
+.btn-success:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #004349; /* Dark green text on hover */
+}
+
+
+
+/* Hero Section Styling */
+.hero {
+	background-color: #004349; /* Solid dark teal background */
+	min-height: 60vh; /* Reduce vertical height */
+	padding-top: 2rem; /* Reduced padding from the top */
+	width: 100%;
+	color: #fff;
+
+}
+
+/* Ellipse Background */
+.ellipse-bg {
+	position: absolute;
+	top: -50%; /* Position the ellipse off the bottom */
+	left: 50%; /* Center horizontally */
+	transform: translateX(-50%); /* Adjust for centering */
+	width: 100%; /* Wider than the screen */
+	height: 110%; /* Height of the ellipse */
+	background: linear-gradient(
+        to bottom, 
+        rgba(0, 103, 105, 0) 0%, /* 0% transparent */
+        rgba(0, 103, 105, 0) 50%, /* 50% transparent */
+        rgba(64, 165, 120, 0.20) 100% /* Less intense green at 100% */
+    );
+	border-radius: 50%; /* Makes it elliptical */
+	z-index: 0; /* Place behind the content */
+}
+
+/* Hero Title Styling */
+.hero-title {
+    font-family: 'Lalezar', cursive;
+    font-size: 5rem;
+    white-space: nowrap;
+    line-height: 1.1;
+    margin-top: 0;
+    color: #fff; /* Text color */
+}
+
+.hero-title .comma {
+	color: #9DDE8B; /* Custom color for the comma */
+}
+
+.hero-content {
+	max-width: 1300px;
+	margin-top: 100px; /* Remove top margin */
+	z-index: 1;
+}
+
+
+.hero-subtitle {
+	font-family: 'Roboto', sans-serif; /* Use Roboto */
+	font-weight: 400; /* Regular weight */
+	max-width: 1200px;
+	font-size: 1.7rem; /* Adjust font size */
+	line-height: 1.3; /* Improve readability */
+	color: #ffffff; /* Optional: Set text color */
+	margin: 0 auto; /* Center-align with limited width */
+}
+
+.hero-subtitle.lead {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/* Button Styling */
+.hero-content .btn-success {
+	background-color: #9DDE8B; /* Initial green color */
+	border: none; /* Remove border */
+	border-radius: 30px; /* Rounded button */
+	color: black; /* Initial text color */
+	font-weight: bold;
+	font-size: 1.2rem; /* Larger font size */
+	padding: 0.85rem 2rem; /* Adjust button padding */
+	transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* Button Hover Effect */
+.hero-content .btn-success:hover {
+	background-color: #ffffff; /* White background on hover */
+	color: #004349; /* Text color changes for contrast */
+	transform: scale(1.05); /* Slightly scale up the button */
+}
+
+/* Adjust heading size on smaller screens */
+@media (max-width: 576px) {
+	.hero h1 {
+		font-size: 2rem;
+	}
+}
+
+
+.venue-images {  
+	padding: 80px;
+	width: 100% !important;
+	background-color: #004349; 
+}
+
+/* Venue Images */
+.venue-images img {
+	object-fit: cover;
+	width: 100%;
+	height: 250px;
+}
+
+@keyframes moveAcrossScreen {
+	0% {
+			transform: translateX(-100%); /* Start off-screen to the left */
+			opacity: 0; /* Start invisible */
+	}
+	10% {
+			opacity: 1; /* Fade in */
+	}
+	90% {
+			opacity: 1; /* Stay visible */
+	}
+	100% {
+			transform: translateX(100%); /* Move off-screen to the right */
+			opacity: 0; /* Fade out */
+	}
+}
+
+/* Info Section */
+.info-section {
+	background: #ECE2D0;
+}
+
+/* Button Styling for "Get started for free" */
+.btn-stay-green {
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border: none; /* Remove borders */
+    padding: 0.70rem 1.5rem; /* Consistent padding */
+    border-radius: 30px; /* Rounded corners */
+    background-color: #9DDE8B; /* Light green background */
+    color: black; /* Text color */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth scaling and text color transition */
+}
+
+/* Hover Effect */
+.btn-stay-green:hover {
+    background-color: #9DDE8B; /* Keep the green background on hover */
+    color: black; /* Keep the text color the same */
+    transform: scale(1.05); /* Slightly scale up */
+}
+
+/* New Section: Venue Lending (Beige) */
+  .venue-lending {
+	background-color: white; /* Beige background */
+	display: flex;
+  }
+
+  .venue-lending .row {
+	gap: 0rem; /* Reduce spacing between text and image */
+  }
+  
+  /* Title / Headings */
+  .venue-lending h2 {
+	color: #004349; /* Dark teal text for contrast */
+	font-size: 2rem;
+	margin-bottom: 1rem;
+  }
+  
+  /* Paragraph Styling */
+  .venue-lending p {
+	color: black;
+	max-width: 700px; /* Limit width for readability */
+  }
+  
+  /* Bulleted List */
+  .venue-lending ul {
+	max-width: 700px; /* Keep consistent with paragraph */
+  }
+  
+  .venue-lending li {
+	margin-bottom: 0.5rem;
+	color: black; /* Dark teal or #333, whichever you prefer */
+  }
+  
+  /* Button Styling (reuse your .btn-stay-green if desired) */
+  .venue-lending .btn-stay-green {
+	/* You already have .btn-stay-green in your CSS. 
+	   This ensures it's consistent with your existing theme. */
+	margin-top: 1rem;
+  }

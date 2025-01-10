@@ -1,0 +1,178 @@
+ /* Top bar */
+ .top-bar {
+    width: 100%;
+    background-color: #171A17; /* Teal-ish color */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0 20px;
+  }
+  
+  .top-bar .logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  .top-bar .user-icon {
+    font-size: 1.3rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease;
+  }
+
+  .icon-link {
+	font-size: 1.3rem;
+	color: white;
+	text-decoration: none;
+	padding: 10px; /* Increase clickable area */
+	margin-left: 10px; /* Space between icons */
+	transition: color 0.3s ease;
+	cursor: pointer;
+  }
+  
+  .icon-link:hover {
+	color: #ffcc00; /* Highlight color on hover */
+  }
+
+
+/* Ensure the app root takes up the full height */
+:host {
+	font-family: 'Roboto', sans-serif;   /* Example global font */
+}
+
+/* Card Styling */
+.card {
+	border: none; /* Remove card border */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	/* Changed card background to #1C1E1C to match login container */
+	background-color: #1C1E1C; 
+	color: #ffffff;       /* White text */
+
+	margin-bottom: 20px;
+}
+
+:host ::ng-deep .text-muted {
+	color: #666 !important;
+}
+
+.form-control {
+	background-color: #1C1E1C;  /* Same color as container */
+	color: #ffffff;            /* Text color inside the input (when typed) */
+	border: 1px solid #666;    /* Border color (adjust as needed) */
+	border-radius: 4px;
+	padding: 0.5rem;
+	/* Remove default box-shadow on focus if using Bootstrap */
+	box-shadow: none;
+}
+
+.form-control::placeholder {
+	color: #666; 
+	opacity: 1;   /* Ensure opacity is 100% so color is not “faded” */
+}
+.form-control:focus {
+	outline: none; /* Remove default outline */
+	box-shadow: 0 0 10px 1px #9DDE8B; /* Green glow shadow */
+}
+
+.card .card-header {
+	display: flex;
+	justify-content: center;
+}
+    
+/* Card Title (e.g., <h6>) Styling */
+h6 {
+	font-size: 1.8rem;
+	color: white; 
+}
+
+/* Nav pills - active state */
+.nav-pills a.active, .nav-item a.active {
+	/* Changed from #28a745 to #9DDE8B */
+	background-color: #9DDE8B !important; 
+	/* Text color changed to #000 for contrast against the green background */
+	color: #000 !important;
+}
+
+.nav-item a.active i {
+	/* Changed icon color to #000 for visibility on green background */
+	color: #000 !important;
+}
+
+/* Nav pills - default links */
+.nav-pills a, .nav-item a.has-icon {
+	/* Default link color changed to #9DDE8B; background of the link remains #1C1E1C or transparent */
+	color: #9DDE8B;
+	background-color: transparent;
+}
+
+.nav-pills a:hover, .nav-item a.has-icon:hover i {
+	/* Hover color changed from #057c1b to a slightly darker shade or simply keep #9DDE8B
+			You can also choose #ffffff if you want a full white hover effect */
+	color: #ffffff;
+}
+
+/* When hovering the active link, keep text color #000 or #fff, whichever you prefer */
+.nav-pills a.active:hover, .nav-item a.has-icon.active:hover i {
+	color: #000;
+}
+
+/* Container margin */
+.container {
+	margin-top: 20px;
+}
+
+.customButton {
+	background-color: #9DDE8B;
+	border: 0px; 
+	margin-right: 5px;
+	color: black;
+}
+
+
+.customButton:hover {
+	background-color: #057c1b;
+	color: #fff;
+}
+
+.customButton2 {
+	background-color: transparent;
+	color: #666;
+	border-color: #666;
+}
+
+.customButton2:hover {
+	scale: 1.02;
+}
+
+/* Modal footer positioning */
+div.modal-footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Center text within modal body <p> */
+div.modal-body p {
+	text-align: center;
+}
+
+/* Success Mark */
+#successMark {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#successMark i {
+	font-size: 100px !important;
+	/* Changed from #28a745 to #9DDE8B */
+	color: #9DDE8B !important;
+}
+

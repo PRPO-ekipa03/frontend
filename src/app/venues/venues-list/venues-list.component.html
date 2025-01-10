@@ -1,0 +1,50 @@
+<section class="results-section">
+    <div class="container">
+      <ng-container *ngIf="hasSearched; else notSearchedYet">
+        <ng-container *ngIf="venues && venues.length; else noVenuesFound">
+          <div
+            class="venue-card mb-4 p-4 rounded-3 position-relative d-flex align-items-start"
+            *ngFor="let venue of venues"
+          >
+            <img
+              [src]="venue.photos[0]"
+              alt="Venue"
+              class="rounded-3 me-4 venue-image"
+            />
+            <div class="flex-grow-1 d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="fw-bold mb-1">{{ venue.name }}</h5>
+                <p class="mb-1">
+                  <span class="me-3">{{ venue.location }}</span>
+                  <a href="#" class="text-decoration-underline" style="color:#6c757d;">Show on map</a>
+                </p>
+                <p class="venue-description mb-4">
+                    {{ getTruncatedDescription(venue.description || 'Default description text.', 100) }}
+                  </p>
+              </div>
+              <!-- Button container -->
+              <div class="position-absolute show-pricing-container">
+                <a class="btn show-pricing-btn" (click)="onShowPricing(venue.id)">
+                    Details
+                </a>
+              </div>
+            </div>
+            <div
+              class="rating-badge d-flex align-items-center justify-content-center position-absolute"
+            >
+              <span>{{ (venue.averageRating || 0 ) | number:'1.1-1' }}</span>
+            </div>
+          </div>
+        </ng-container>
+  
+        <ng-template #noVenuesFound>
+          <p>No venues found.</p>
+        </ng-template>
+      </ng-container>
+  
+      <ng-template #notSearchedYet>
+        <p>Use the search bar above to find venues.</p>
+      </ng-template>
+    </div>
+  </section>
+  

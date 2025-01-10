@@ -1,0 +1,57 @@
+<app-auth>
+  <!-- Example simple login form -->
+  <h3>Log in to your account</h3>
+
+  <!-- Use Angular's event binding for form submission -->
+  <form (submit)="onLogin($event)">
+
+    <!-- Email Field -->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        id="email"
+        name="email"
+        type="text"
+        class="form-control"
+        placeholder="example@example.com"
+        required
+        [(ngModel)]="formData.email"
+        [ngClass]="{ 'is-invalid': missingFields['email'] }"
+      />
+    </div>
+    
+    <!-- Password Field -->
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        class="form-control"
+        required
+        [(ngModel)]="formData.password"
+        [ngClass]="{ 'is-invalid': missingFields['password'] }"
+      />
+    </div>
+
+    <!-- Display any error (or general) message -->
+    <div *ngIf="message" class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+
+    <!-- Forgot Password Link -->
+    <div class="mt-3 mb-3">
+      <!-- Use [routerLink] to navigate via Angular Router -->
+      <a [routerLink]="['/forgot-password']" class="forgot-password-link">
+        Forgot your password?
+      </a>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn btn-success w-100" type="submit">
+      Log in
+    </button>
+
+    
+  </form>
+</app-auth>

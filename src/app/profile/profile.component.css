@@ -1,0 +1,95 @@
+:host {
+    background-color: #ECE2D0; /* Change this to your desired background color */
+    display: block; /* Ensure the host element covers the full width */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+  }
+
+.top-bar {
+    width: 100%;
+    background-color: #034C4C; /* Teal-ish color */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .menu-item {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+
+  }
+
+
+  .menu-item:hover {
+    color: #ffcc00; /* Highlight text color on hover */
+  }
+
+  .top-bar .logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  .top-bar .user-icon {
+    font-size: 1.3rem;
+  }
+
+  .icon-link {
+    color: white; /* Match the icon color with your design */
+    text-decoration: none; /* Remove underline from the link */
+    font-size: 1.3rem; /* Adjust size to match the icon */
+    display: inline-flex; /* Align icon properly */
+    padding: 8px; /* Add some padding for better clickability */
+    transition: color 0.3s ease;
+  }
+  
+  .icon-link:hover {
+    color: #dac059; /* Highlight color on hover */
+  }
+  
+  /* Default state: black text and icons */
+.nav-link {
+    color: black !important; /* Text and icon color */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Remove background */
+    font-weight: 500; /* Optional: Slightly bold for better visibility */
+  }
+  
+  /* Hover state: light background to highlight */
+  .nav-link:hover {
+    background-color: #f7f7f7; /* Optional: light hover effect */
+    color: black; /* Ensure text stays black */
+  }
+  
+  /* Active state: custom outline and background */
+  .nav-link.active {
+    background-color: #EEE4F0 !important; /* Light beige background */
+    border: 1px solid #EEE4F0 !important; /* Custom outline color */
+    color: black !important; /* Keep text black */
+  }
+  
+  /* Remove default focus styles and use custom styles */
+  .nav-link:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px #ECE2D0; /* Optional: subtle glow effect */
+  }
+
+  

@@ -1,0 +1,115 @@
+<app-auth>
+    <!-- Registration Card -->
+    <div class="card-body text-white">
+      <!-- Register Title -->
+      <h3 class="card-title text-center mb-2">Create an account</h3>
+      <hr class="mb-4" />
+  
+      <!-- Registration Form -->
+      <form (ngSubmit)="onSubmit($event)" #registerForm="ngForm">
+        <!-- First Name and Last Name -->
+        <div class="row mb-2">
+          <div class="col-6">
+            <label style="color: #fff;" for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              class="form-control"
+              [(ngModel)]="formData.firstName"
+              required
+            />
+          </div>
+          <div class="col-6">
+            <label style="color: #fff;" for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-control"
+              [(ngModel)]="formData.lastName"
+              required
+            />
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="mb-2">
+          <label style="color: #fff;" for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="example@example.com"
+            [(ngModel)]="formData.email"
+            required
+          />
+        </div>
+  
+        <!-- Date of Birth -->
+        <!-- [(ngModel)]="formData.dob" -->
+        <div class="mb-2">
+          <label style="color: #fff;" for="dob">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            class="form-control"
+            
+          />
+        </div>
+  
+        <!-- Username -->
+        <div class="mb-2">
+          <label style="color: #fff;" for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            [(ngModel)]="formData.username"
+            required
+          />
+        </div>
+  
+        <!-- Password -->
+        <div class="mb-2">
+          <label style="color: #fff;" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="6-60 characters"
+            [(ngModel)]="formData.password"
+            required
+          />
+        </div>
+  
+        <!-- Confirm Password -->
+        <div class="mb-4">
+          <label style="color: #fff;" for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-control"
+            [(ngModel)]="formData.confirmPassword"
+            required
+          />
+        </div>
+  
+        <!-- Error Message (Optional) -->
+        <div *ngIf="message" class="alert alert-danger text-start">
+          {{ message }}
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn custom-green-btn w-100">
+          Register
+        </button>
+      </form>
+    </div>
+  </app-auth>
+  

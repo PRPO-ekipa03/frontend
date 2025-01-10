@@ -1,0 +1,67 @@
+/* Additional styling that only affects the login form if needed */
+.form-control {
+    background-color: #1C1E1C;  /* Same color as container */
+    color: #ffffff;            /* Text color inside the input (when typed) */
+    border: 1px solid #666;    /* Border color (adjust as needed) */
+    border-radius: 4px;
+    padding: 0.5rem;
+    /* Remove default box-shadow on focus if using Bootstrap */
+    box-shadow: none;
+  }
+/* Placeholder text color */
+.form-control::placeholder {
+  color: #666; 
+  opacity: 1;   /* Ensure opacity is 100% so color is not “faded” */
+}
+
+.form-control:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 15px 2px #9DDE8B; /* Green glow shadow */
+}
+  
+/* Green button, using .btn.btn-success if not using a CSS framework */
+.btn {
+  background-color: #9DDE8B;
+  color: #000;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #9DDE8B;
+  transform: scale(1.01);
+}
+
+.btn:focus {
+  color: #000;
+}
+
+h3 {
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.forgot-password-link {
+  display: inline-block;
+  color: #9DDE8B;         /* Match the button's green color */
+  text-decoration: none;  /* Remove underline */
+  font-size: 0.9rem;      /* Slightly smaller text */
+  font-weight: 600;       /* Bold text for emphasis */
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  color: #ffffff;         /* Change to white on hover */
+  text-decoration: underline; /* Add underline on hover for accessibility */
+}
+
+.auth-container {
+  height: 200px !important;
+}
+
+.form-group {
+  text-align: left;
+}

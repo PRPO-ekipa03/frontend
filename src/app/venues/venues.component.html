@@ -1,0 +1,134 @@
+<!-- Top Navigation -->
+<nav class="navbar navbar-expand-md navbar-dark  py-3">
+	<div class="container d-flex justify-content-between align-items-center">
+	  <!-- Navbar Brand -->
+	  <a class="navbar-brand fs-4" href="#">Event4You</a>
+
+	  <a routerLink="/profile" class="icon-link d-none d-md-block">
+		<i class="fa fa-user"></i>
+	  </a>
+	  <!-- Navbar Toggler for Mobile View -->
+	  <button
+		class="navbar-toggler"	
+		type="button"
+		data-bs-toggle="collapse"
+		data-bs-target="#mainNav"
+		aria-controls="mainNav"
+		aria-expanded="false"
+		aria-label="Toggle navigation"
+	  >
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	</div>
+  </nav>
+  
+  <!-- Hero / Search Section -->
+  <section class="hero-section d-flex flex-column justify-content-center">
+	<div class="container py-5">
+	  <h1 class="display-5">Find your venue now</h1>
+	  <p class="lead mb-5">Search for venues that best fit your event</p>
+	  <div class="search-bar p-2 rounded-pill d-flex justify-content-between align-items-center">
+		<!-- Location Input -->
+		<div class="input-group search-input me-3 position-relative">
+		  <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+		  <div class="position-relative flex-grow-1">
+			<!-- Ghost suggestion wrapper -->
+			<div class="ghost-wrapper">
+			  <span class="ghost-text">
+				{{ userInput }}
+				<span class="ghost-suffix" *ngIf="bestSuggestionSuffix">
+				  {{ bestSuggestionSuffix }}
+				</span>
+			  </span>
+			</div>
+			<!-- Actual Input Field -->
+			<input
+			  type="text"
+			  class="form-control bg-transparent"
+			  placeholder="Location"
+			  (input)="onLocationInput($event)"
+			  (keydown.enter)="acceptSuggestion()"
+			  [(ngModel)]="userInput"
+			/>
+		  </div>
+		</div>
+  
+		<!-- Date Input -->
+		<div class="input-group search-input me-3 position-relative">
+		  <span class="input-group-text">
+			<i class="bi bi-calendar-event-fill"></i>
+		  </span>
+		  <button
+			#dateButton
+			(click)="openModal()"
+			id="date-button"
+			class="form-control date-button"
+			type="button"
+		  >
+			{{ selectedDate || 'Select Date' }}
+		  </button>
+		  <input type="date" id="date-picker" class="d-none" />
+		</div>
+
+		<div class="input-group search-input position-relative">
+			<span class="input-group-text">
+			<i class="bi bi-people-fill"></i>
+			</span>
+
+			<select class="form-select" [(ngModel)]="selectedVenueType" (change)="onVenueTypeChange($event)">
+			<option [ngValue]="null" disabled>Choose type of venue</option>
+			<option *ngFor="let type of venueTypes" [value]="type">
+				{{ formatVenueType(type) }}
+			</option>
+			</select>
+		</div>
+  
+		<!-- Search Button -->
+		<button class="btn p-0 ms-3 pe-2" type="button" (click)="searchVenues()">
+		  <i class="bi bi-search fs-4 text-secondary"></i>
+		</button>
+	  </div>
+	</div>
+  </section>
+  
+  <!-- Child Component for Results -->
+  <app-venues-list
+	*ngIf="!showingDetail"
+	[venues]="venues"
+	[hasSearched]="hasSearched"
+	(navigateToDetail)="onNavigateToDetail($event)"
+  > </app-venues-list>
+
+  <!-- Pagination Buttons -->
+  <div 
+  *ngIf="hasSearched && venues.length > 0 && !showingDetail" 
+  class="pagination-buttons d-flex justify-content-center mb-4"
+  style="background-color: #ECE2D0; padding: 10px; border-radius: 10px;"
+>
+  <!-- Left Arrow Button -->
+  <button 
+    class="btn btn-secondary fs-4 me-2" 
+    [disabled]="pageResponse?.first || currentPage === 0" 
+    (click)="prevPage()"
+  >
+    <i class="bi bi-arrow-left"></i>
+  </button>
+
+  <!-- Right Arrow Button -->
+  <button 
+    class="btn btn-secondary" 
+    [disabled]="pageResponse?.last" 
+    (click)="nextPage()"
+  >
+    <i class="bi bi-arrow-right fs-4"></i>
+  </button>
+</div>
+
+
+  <router-outlet *ngIf="showingDetail"></router-outlet>
+  
+  <!-- Portal for the calendar overlay -->
+  <ng-template cdkPortal>
+	<app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
+  </ng-template>
+  

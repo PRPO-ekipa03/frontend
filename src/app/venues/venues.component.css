@@ -1,0 +1,237 @@
+.navbar-brand {
+	font-family: 'Dela Gothic One', sans-serif;
+	font-size: 1.5rem;
+	transition: color 0.5s ease;
+}
+
+.navbar {
+	background-color: #004349;
+	transition: background-color 0s ease, box-shadow 0s ease;
+}
+
+  /* Center the navbar content within a smaller container */
+.navbar .container {
+	max-width: 1500px;
+	margin: auto;
+}
+
+.icon-link {
+	font-size: 1.3rem;
+	color: white;
+	text-decoration: none;
+	padding: 10px;
+	margin-left: 10px;
+	transition: color 0.3s ease;
+  }
+  
+  .icon-link:hover {
+	color: #ffcc00; /* Highlight color on hover */
+  }
+  
+
+@keyframes shake {
+	0%, 100% {
+	  transform: rotate(0); /* Start and end with no rotation */
+	}
+	25% {
+	  transform: rotate(-10deg); /* Rotate slightly to the left */
+	}
+	50% {
+	  transform: rotate(10deg); /* Rotate slightly to the right */
+	}
+	75% {
+	  transform: rotate(-5deg); /* Rotate slightly to the left again */
+	}
+  }
+  
+  .btn:hover {
+	animation: shake 0.7s ease-in-out; /* Apply the shake animation */
+  }
+  
+  .btn:active {
+	transform: translateY(0); /* Resets the button position when clicked */
+  }
+
+.hero-section {
+	position: relative;
+	background-color: #004349;
+	color: #fff;
+	padding-top: 160px;
+	z-index: 1;
+}
+  
+  /* Title Font (example) */
+.display-5 {
+	font-family: 'Lalezar', cursive;
+}
+
+/* Search Bar Styling */
+.search-bar {
+	position: absolute;
+	bottom: -10%; /* Position the search bar overlapping the hero and results */
+	left: 50%;
+	transform: translateX(-50%);
+	background: #ffffff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 2;
+	padding: 15px 20px;
+	border-radius: 50px;
+	width: 71%;
+}
+
+/* Input Field Container */
+.search-input {
+	background-color: #eee4f0;
+	padding: 5px;
+	overflow: visible;
+	position: relative;
+	border-radius: 90px;
+	font-family: sans-serif;
+}
+  
+  /* If you have special corner radius logic for nth-child(1,2,3), keep it here */
+.search-input:nth-child(1) {
+	border-radius: 90px 0px 0px 90px;
+}
+  
+.search-input:nth-child(2) {
+	border-radius: 0;
+}
+  
+.search-input:nth-child(3) {
+	border-radius: 0px 90px 90px 0px;
+}
+
+.search-input .form-control:focus {
+	box-shadow: none;
+}
+  
+  /* Input Field */
+.search-input .form-control {
+	background-color: transparent;
+	border: none;
+	font-size: 1rem;
+	color: #333;
+	padding-left: 2.5rem;
+	height: 45px;
+}
+  
+  /* Input Group Text (Icons) */
+.search-input .input-group-text {
+	background-color: transparent;
+	border: none;
+	color: #6c757d;
+	position: absolute;
+	left: 1rem;
+	z-index: 10;
+	padding: 0;
+	font-size: 1.1rem;
+	line-height: 45px;
+	pointer-events: none;
+}
+
+/* Apply the same "old input" visual styles to the new select */
+.search-input .form-select {
+	background-color: transparent; /* same as old .form-control */
+	border: none;
+	font-size: 1rem;
+	color: #333;
+	padding-left: 2.5rem; /* leave space for icon on the left */
+	height: 45px;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	/* If you want to remove the native arrow (optional), uncomment below:
+	   -webkit-appearance: none;
+	   -moz-appearance: none;
+	   background-image: none;
+	   background-repeat: no-repeat;
+	*/
+  }
+  
+  .search-input .form-select:focus {
+	outline: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+  }
+  
+  /* Date button styling */
+.date-button {
+	background-color: #eee4f0;
+	border: none;
+	font-size: 1rem;
+	color: #333;
+	padding-left: 2.5rem;
+	height: 45px;
+	width: 100%;
+	text-align: left;
+	border-radius: 10px;
+	cursor: pointer;
+}
+  
+  /* Button hover effect */
+.date-button:hover {
+	background-color: #ddd;
+}
+  
+/* Suggestion dropdown styles, if used */
+.dropdown-menu {
+	max-height: 200px;
+	overflow: auto;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1050;
+	display: block;
+	width: 100%;
+}
+  
+.dropdown-item {
+	cursor: pointer;
+}
+  
+/* Ghost text wrapper */
+.ghost-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 2.5rem; /* space for the icon */
+	transform: translateY(-50%);
+	pointer-events: none;
+	color: #ccc;
+	font-size: 1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: calc(100% - 2.5rem);
+}
+
+.ghost-text {
+	display: inline-block;
+	width: 100%;
+}
+  
+  /* Only the suffix (the part user hasn't typed yet) should appear lighter */
+.ghost-suffix {
+	color: #ccc;
+}
+  
+  /* Ensure the actual input text sits on top */
+input.form-control.bg-transparent {
+	position: relative;
+	background: transparent;
+	z-index: 1;
+	color: #333;
+}
+  
+  /* Adjust Search Button icon effect */
+.btn i {
+	color: #6c757d;
+	transition: transform 0.3s ease;
+}
+  
+.btn:hover i {
+	transform: scale(1.1);
+}
+
+.btn-secondary {
+	background-color: #fff;
+}
