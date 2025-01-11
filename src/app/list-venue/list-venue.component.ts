@@ -250,7 +250,7 @@ export class ListVenueComponent {
     this.venuesService.createVenue(this.venueData).subscribe({
       next: (createdVenue: Venue) => {
         alert('Venue successfully listed!');
-        this.router.navigate(['/home']); // Navigate to home or another relevant page
+        this.router.navigate(['/profile']); // Navigate to home or another relevant page
       },
       error: (err) => {
         console.error('Error listing venue:', err);
@@ -292,6 +292,6 @@ export class ListVenueComponent {
   }
 
   navigateToProfile(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/profile']);
   }
 }
