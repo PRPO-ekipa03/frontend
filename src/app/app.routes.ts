@@ -8,7 +8,9 @@ import { ListVenueComponent } from './list-venue/list-venue.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { ProfileComponent } from './profile/profile.component';
-import { authGuard } from './core/guards/auth.guard'; // Path to your auth guard
+import { authGuard } from './core/guards/auth.guard'; 
+import { PaymentSuccessComponent } from './payments/payment-success/payment-success.component';
+import { PaymentCancelComponent } from './payments/payment-cancel/payment-cancel.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomepageComponent },
@@ -25,6 +27,8 @@ export const routes: Routes = [
     { path: 'settings', component: SettingsComponent, canActivate: [authGuard] },
     { path: 'create-event', component: CreateEventComponent, canActivate: [authGuard]},
     { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+    { path: 'payments/success', component: PaymentSuccessComponent },
+    { path: 'payments/cancel', component: PaymentCancelComponent },
 
 ];
 
