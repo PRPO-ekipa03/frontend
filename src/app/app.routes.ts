@@ -31,6 +31,6 @@ export const routes: Routes = [
     { path: 'payments/success', component: PaymentSuccessComponent },
     { path: 'payments/cancel', component: PaymentCancelComponent },
     { path: 'auth/confirm', component: ConfirmComponent },
-
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];  
 
