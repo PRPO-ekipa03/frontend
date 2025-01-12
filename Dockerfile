@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build --configuration=testing
+RUN npm run build:testing
 
 FROM nginx:alpine
 COPY --from=builder /app/dist/ /usr/share/nginx/html
