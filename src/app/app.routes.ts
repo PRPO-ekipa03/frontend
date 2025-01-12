@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { authGuard } from './core/guards/auth.guard'; 
 import { PaymentSuccessComponent } from './payments/payment-success/payment-success.component';
 import { PaymentCancelComponent } from './payments/payment-cancel/payment-cancel.component';
+import { ConfirmComponent } from './auth/confirm/confirm.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomepageComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
     { path: 'payments/success', component: PaymentSuccessComponent },
     { path: 'payments/cancel', component: PaymentCancelComponent },
+    { path: 'auth/confirm', component: ConfirmComponent },
 
-];
+];  
 
