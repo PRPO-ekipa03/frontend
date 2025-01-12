@@ -27,4 +27,9 @@ export class VenuesListComponent {
     return description;
   }
 
+  getRandomImage(): string {
+    const randomIndex = Math.floor(Math.random() * 5) + 1; // random number between 1 and 5
+    return `assets/images/event${randomIndex}.jpeg`;
+  }
+
 }

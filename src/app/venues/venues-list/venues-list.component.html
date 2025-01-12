@@ -7,7 +7,7 @@
             *ngFor="let venue of venues"
           >
             <img
-              [src]="venue.photos[0]"
+              [src]="getRandomImage()"
               alt="Venue"
               class="rounded-3 me-4 venue-image"
             />
