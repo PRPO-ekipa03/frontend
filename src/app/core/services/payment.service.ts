@@ -33,21 +33,27 @@ export class PaymentService {
   /**
    * Handles the success callback for an order by token/orderId.
    * @param token The order token (orderId).
-   * @returns An Observable that emits the result message.
+   * @returns An Observable that emits the result message as a string.
    */
   handleSuccess(token: string): Observable<string> {
     const params = new HttpParams().set('token', token);
-    return this.httpService.get<string>('payments/success', { params });
+    return this.httpService.get<string>(
+      'payments/success',
+      { params, responseType: 'text' } as any // Explicitly set responseType as text
+    );
   }
 
   /**
    * Handles the cancellation of an order by token/orderId.
    * @param token The order token (orderId).
-   * @returns An Observable that emits the cancellation result message.
+   * @returns An Observable that emits the cancellation result message as a string.
    */
   handleCancel(token: string): Observable<string> {
     const params = new HttpParams().set('token', token);
-    return this.httpService.get<string>('payments/cancel', { params });
+    return this.httpService.get<string>(
+      'payments/cancel',
+      { params, responseType: 'text' } as any // Explicitly set responseType as text
+    );
   }
 
   /**

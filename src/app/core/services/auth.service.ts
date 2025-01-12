@@ -31,4 +31,13 @@ export class AuthService {
     );
   }
 
+  // New method to confirm user account using a token
+  confirmUser(token: string): Observable<string> {
+    const url = `auth/confirm?token=${encodeURIComponent(token)}`;
+    return this.httpService.get<string>(
+      url,
+      { responseType: 'text' } as any // Explicitly set responseType as text
+    );
+  }
+
 }

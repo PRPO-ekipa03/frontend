@@ -216,7 +216,8 @@ export class VenueDetailsComponent implements OnInit {
 
   // ==================== Ratings Helpers ====================
   getRatingText(rating: number): string {
-    if (rating >= 0 && rating < 2)  return 'Hell';
+    if (rating == 0) return "Unrated"
+    if (rating > 0 && rating < 2)  return 'Hell';
     if (rating >= 2 && rating < 4)  return 'Awful';
     if (rating >= 4 && rating < 6)  return 'Poor';
     if (rating >= 6 && rating < 8)  return 'Decent';
